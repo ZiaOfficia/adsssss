@@ -1,0 +1,3078 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VidFlow.in — India's #1 YouTube Growth Partner</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23FF0000'/><polygon points='11,8 27,16 11,24' fill='white'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --red: #FF0000;
+      --red-dark: #cc0000;
+      --gold: #f5a623;
+      --dark: #0d0d0d;
+      --dark2: #161616;
+      --dark3: #1f1f1f;
+      --gray: #888;
+      --white: #ffffff;
+      --green: #22c55e;
+      --radius: 14px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--dark2);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--red);
+      border-radius: 99px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 5%;
+      background: rgba(13, 13, 13, 0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--red);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: #aaa;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .nav-cta {
+      background: var(--red) !important;
+      color: var(--white) !important;
+      padding: 0.5rem 1.4rem;
+      border-radius: 99px;
+      font-size: 0.82rem !important;
+      font-weight: 600 !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--red-dark) !important;
+      transform: scale(1.04) !important;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      display: block;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(13, 13, 13, 0.98);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      color: var(--white);
+      font-size: 1.4rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .mobile-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      font-size: 1.8rem;
+      color: #888;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: var(--white);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 5% 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 0, 0, 0.18) 0%, transparent 70%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(245, 166, 35, 0.08) 0%, transparent 60%), var(--dark);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 0%, transparent 80%);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 0, 0, 0.12);
+      border: 1px solid rgba(255, 0, 0, 0.3);
+      padding: 0.4rem 1.2rem;
+      border-radius: 99px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #ff6b6b;
+      margin-bottom: 1.8rem;
+      position: relative;
+      z-index: 1;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.4;
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      line-height: 1;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .hero h1 .outline {
+      -webkit-text-stroke: 2px var(--white);
+      color: transparent;
+    }
+
+    .hero h1 .red {
+      color: var(--red);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: #aaa;
+      font-weight: 300;
+      margin: 1.2rem 0 2.5rem;
+      max-width: 560px;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.7s 0.2s ease both;
+      line-height: 1.7;
+    }
+
+    .hero-sub strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      padding: 1rem 2.4rem;
+      border-radius: 99px;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.35);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      padding: 1rem 2.4rem;
+      border-radius: 99px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      transition: border-color 0.2s, background 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeIn 1s 0.5s ease both;
+      opacity: 0;
+      animation-fill-mode: both;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      color: #888;
+    }
+
+    .trust-sep {
+      width: 1px;
+      height: 16px;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* TICKER */
+    .ticker-wrap {
+      background: var(--red);
+      padding: 0.65rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-inner {
+      display: inline-flex;
+      animation: ticker 28s linear infinite;
+    }
+
+    .ticker-item {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      padding: 0 2rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .ticker-sep {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* STATS */
+    .stats {
+      padding: 5rem 5%;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--dark2);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .stat-card:hover {
+      border-color: rgba(255, 0, 0, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .stat-num {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 3.5rem;
+      line-height: 1;
+    }
+
+    .stat-num.red {
+      color: var(--red);
+    }
+
+    .stat-num.gold {
+      color: var(--gold);
+    }
+
+    .stat-num.green {
+      color: var(--green);
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-top: 0.4rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* SECTION HEADER */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: rgba(255, 0, 0, 0.1);
+      border: 1px solid rgba(255, 0, 0, 0.25);
+      color: #ff6b6b;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0.35rem 1rem;
+      border-radius: 99px;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      line-height: 1.1;
+    }
+
+    .section-sub {
+      color: #888;
+      font-size: 0.95rem;
+      margin-top: 0.7rem;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    /* SERVICES */
+    .services {
+      padding: 5rem 5%;
+      background: var(--dark2);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--dark3);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-card:hover {
+      border-color: rgba(255, 0, 0, 0.2);
+      transform: translateY(-4px);
+    }
+
+    .service-icon-wrap {
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      background: rgba(255, 0, 0, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .service-name {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-desc {
+      font-size: 0.83rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .service-tag {
+      display: inline-block;
+      background: rgba(34, 197, 94, 0.12);
+      color: var(--green);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.7rem;
+      border-radius: 99px;
+      margin-top: 1rem;
+      border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    /* PLANS */
+    .plans {
+      padding: 5rem 5%;
+    }
+
+    .plan-tabs {
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      margin-bottom: 3rem;
+      background: var(--dark2);
+      border-radius: 99px;
+      padding: 5px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .plan-tab {
+      padding: 0.65rem 2rem;
+      border-radius: 99px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      color: #888;
+      transition: all 0.3s;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .plan-tab.active {
+      background: var(--red);
+      color: var(--white);
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    }
+
+    .plans-panel {
+      display: none;
+    }
+
+    .plans-panel.active {
+      display: grid;
+    }
+
+    .views-grid {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.2rem;
+      align-items: start;
+    }
+
+    .subs-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .plan-card {
+      background: var(--dark2);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      position: relative;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .plan-card.featured {
+      background: linear-gradient(160deg, #1a0000 0%, var(--dark2) 100%);
+      border: 1px solid rgba(255, 0, 0, 0.4);
+      transform: scale(1.04);
+    }
+
+    .plan-card.featured:hover {
+      transform: scale(1.04) translateY(-6px);
+    }
+
+    .plan-popular {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.3rem 1.2rem;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+
+    .plan-name {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.3rem;
+    }
+
+    .plan-views-count {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+
+    .plan-views-count span {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--gray);
+    }
+
+    .plan-desc {
+      font-size: 0.75rem;
+      color: var(--gray);
+      margin-bottom: 1.3rem;
+      line-height: 1.5;
+    }
+
+    .plan-price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .price-main {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2.8rem;
+      color: var(--white);
+    }
+
+    .price-period {
+      font-size: 0.78rem;
+      color: var(--gray);
+    }
+
+    .plan-orig {
+      font-size: 0.78rem;
+      color: var(--gray);
+      text-decoration: line-through;
+      margin-bottom: 0.5rem;
+    }
+
+    .plan-delivery {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .plan-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.07);
+      margin: 1.2rem 0;
+    }
+
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      color: #ccc;
+      line-height: 1.4;
+    }
+
+    .feat-check {
+      color: var(--green);
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .feat-cross {
+      color: #444;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .plan-features li.dim {
+      color: #555;
+    }
+
+    .btn-plan {
+      width: 100%;
+      padding: 0.85rem;
+      border-radius: 99px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-plan-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-plan-outline:hover {
+      border-color: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .btn-plan-pay {
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--white);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      margin-top: 8px;
+    }
+
+    .btn-plan-pay:hover {
+      background: rgba(255, 255, 255, 0.13);
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .plan-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* POPUP OVERLAY */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .popup-overlay.open {
+      display: flex;
+    }
+
+    .popup-box {
+      background: #1a1a1a;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 500px;
+      position: relative;
+      animation: fadeUp 0.3s ease both;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+
+    .popup-close:hover {
+      color: var(--white);
+    }
+
+    .popup-plan-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 0, 0, 0.12);
+      border: 1px solid rgba(255, 0, 0, 0.3);
+      color: #ff6b6b;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 1rem;
+      border-radius: 99px;
+      margin-bottom: 1.2rem;
+    }
+
+    .popup-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .popup-subtitle {
+      font-size: 0.82rem;
+      color: #888;
+      margin-bottom: 1.8rem;
+    }
+
+    .popup-field {
+      margin-bottom: 1.2rem;
+    }
+
+    .popup-field label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .popup-field input,
+    .popup-field select,
+    .popup-field textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .popup-field input:focus,
+    .popup-field select:focus,
+    .popup-field textarea:focus {
+      border-color: rgba(255, 0, 0, 0.5);
+    }
+
+    .popup-field select option {
+      background: #1a1a1a;
+      color: var(--white);
+    }
+
+    .popup-field textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .popup-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .popup-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--red);
+      color: var(--white);
+      border: none;
+      border-radius: 99px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+      margin-top: 0.5rem;
+    }
+
+    .popup-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(255, 0, 0, 0.5);
+    }
+
+    .popup-note {
+      font-size: 0.72rem;
+      color: #555;
+      text-align: center;
+      margin-top: 0.8rem;
+    }
+
+    /* PAYMENT POPUP */
+    .pay-popup-box {
+      background: #1a1a1a;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      animation: fadeUp 0.3s ease both;
+      text-align: center;
+    }
+
+    .pay-amount {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 3.5rem;
+      color: var(--white);
+      line-height: 1;
+      margin: 1rem 0 0.3rem;
+    }
+
+    .pay-plan-name {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 2rem;
+    }
+
+    .pay-methods {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pay-method {
+      padding: 0.9rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #ccc;
+    }
+
+    .pay-method:hover,
+    .pay-method.sel {
+      border-color: rgba(255, 0, 0, 0.5);
+      background: rgba(255, 0, 0, 0.08);
+      color: var(--white);
+    }
+
+    .pay-upi-field {
+      display: none;
+      margin-bottom: 1.2rem;
+    }
+
+    .pay-upi-field.show {
+      display: block;
+    }
+
+    .pay-upi-field input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .pay-upi-field input:focus {
+      border-color: rgba(255, 0, 0, 0.5);
+    }
+
+    .pay-upi-field input::placeholder {
+      color: #555;
+    }
+
+    /* CONTACT SECTION */
+    .contact {
+      padding: 5rem 5%;
+      background: var(--dark2);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      font-size: 0.88rem;
+      color: #888;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 0, 0, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item-title {
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-item-val {
+      font-size: 0.82rem;
+      color: #888;
+    }
+
+    .contact-form {
+      background: var(--dark3);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+
+    .contact-field {
+      margin-bottom: 1.2rem;
+    }
+
+    .contact-field label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-field input,
+    .contact-field textarea,
+    .contact-field select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .contact-field input:focus,
+    .contact-field textarea:focus,
+    .contact-field select:focus {
+      border-color: rgba(255, 0, 0, 0.4);
+    }
+
+    .contact-field textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .contact-field select option {
+      background: #1f1f1f;
+    }
+
+    .contact-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media(max-width:900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-row {
+        grid-template-columns: 1fr;
+      }
+
+      .popup-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* HOW IT WORKS */
+    .how {
+      padding: 5rem 5%;
+      background: var(--dark2);
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .how-steps {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .how-step {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .how-step:last-child {
+      border-bottom: none;
+    }
+
+    .step-num {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 3rem;
+      color: rgba(255, 0, 0, 0.15);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 50px;
+      text-align: center;
+      transition: color 0.3s;
+    }
+
+    .how-step:hover .step-num {
+      color: var(--red);
+    }
+
+    .step-content h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .step-content p {
+      font-size: 0.82rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .how-visual {
+      background: var(--dark3);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 20px;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .order-step {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .order-icon {
+      font-size: 1.4rem;
+    }
+
+    .order-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .order-sub {
+      font-size: 0.72rem;
+      color: var(--gray);
+      margin-top: 1px;
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+    }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      padding: 5rem 5%;
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .testi-card {
+      background: var(--dark2);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .testi-card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-4px);
+    }
+
+    .testi-stars {
+      color: var(--gold);
+      font-size: 0.85rem;
+      margin-bottom: 0.9rem;
+      letter-spacing: 2px;
+    }
+
+    .testi-text {
+      font-size: 0.85rem;
+      color: #ccc;
+      line-height: 1.75;
+      margin-bottom: 1.4rem;
+      font-style: italic;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .testi-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .testi-name {
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .testi-channel {
+      font-size: 0.72rem;
+      color: var(--gray);
+      margin-top: 1px;
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 5rem 5%;
+      background: var(--dark2);
+    }
+
+    .faq-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .faq-q {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.3rem 0;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      gap: 1rem;
+      transition: color 0.2s;
+    }
+
+    .faq-q:hover {
+      color: #ff6b6b;
+    }
+
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+      color: var(--gray);
+      transition: all 0.3s;
+    }
+
+    .faq-item.open .faq-icon {
+      background: var(--red);
+      border-color: var(--red);
+      color: var(--white);
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .faq-a-inner {
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.8;
+      padding-bottom: 1.3rem;
+    }
+
+    /* GUARANTEE */
+    .guarantee {
+      padding: 5rem 5%;
+    }
+
+    .guarantee-wrap {
+      background: linear-gradient(135deg, rgba(255, 0, 0, 0.08) 0%, rgba(245, 166, 35, 0.05) 100%);
+      border: 1px solid rgba(255, 0, 0, 0.2);
+      border-radius: 24px;
+      padding: 4rem;
+      text-align: center;
+    }
+
+    .guarantee-badge {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    .guarantee-wrap h2 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .guarantee-wrap p {
+      color: #aaa;
+      font-size: 0.9rem;
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      line-height: 1.8;
+    }
+
+    .guarantee-list {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .g-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .g-icon {
+      color: var(--red);
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 7rem 5%;
+      text-align: center;
+      background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(255, 0, 0, 0.12) 0%, transparent 70%);
+    }
+
+    .cta-section h2 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      color: #aaa;
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-form {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 500px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cta-input {
+      flex: 1;
+      min-width: 220px;
+      padding: 0.9rem 1.4rem;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .cta-input::placeholder {
+      color: #666;
+    }
+
+    .cta-input:focus {
+      border-color: rgba(255, 0, 0, 0.5);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #080808;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 4rem 5% 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand-logo {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2rem;
+      letter-spacing: 3px;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-brand-logo span {
+      color: var(--red);
+    }
+
+    .footer-brand-desc {
+      font-size: 0.8rem;
+      color: #666;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 0.7rem;
+      margin-top: 1.2rem;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .social-btn:hover {
+      background: rgba(255, 0, 0, 0.2);
+      border-color: rgba(255, 0, 0, 0.4);
+    }
+
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #888;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 0.82rem;
+      color: #666;
+      text-decoration: none;
+      margin-bottom: 0.6rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: #555;
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-legal a {
+      font-size: 0.75rem;
+      color: #555;
+      text-decoration: none;
+    }
+
+    .footer-legal a:hover {
+      color: #888;
+    }
+
+    /* PAGE LOADER */
+    #pageLoader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #0d0d0d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+    #pageLoader.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(1.04);
+    }
+    .loader-rings {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin-bottom: 2rem;
+    }
+    .loader-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      animation: loaderSpin 1.2s linear infinite;
+    }
+    .loader-ring:nth-child(1) {
+      border-top-color: var(--red);
+      animation-duration: 1.1s;
+    }
+    .loader-ring:nth-child(2) {
+      inset: 10px;
+      border-top-color: var(--gold);
+      animation-duration: 0.9s;
+      animation-direction: reverse;
+    }
+    .loader-ring:nth-child(3) {
+      inset: 20px;
+      border-top-color: rgba(255,255,255,0.3);
+      animation-duration: 1.5s;
+    }
+    .loader-logo-text {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 3rem;
+      letter-spacing: 5px;
+      color: var(--white);
+      animation: loaderBreath 1.2s ease-in-out infinite alternate;
+    }
+    .loader-logo-text span { color: var(--red); }
+    .loader-tagline {
+      font-size: 0.7rem;
+      color: #555;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin: 0.6rem 0 1.6rem;
+    }
+    .loader-bar-wrap {
+      width: 160px;
+      height: 2px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .loader-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      border-radius: 99px;
+      animation: loaderFill 1.6s cubic-bezier(0.4,0,0.2,1) forwards;
+    }
+    @keyframes loaderFill { from { width: 0; } to { width: 100%; } }
+    @keyframes loaderSpin { to { transform: rotate(360deg); } }
+    @keyframes loaderBreath {
+      from { opacity: 0.6; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* HERO PARTICLES */
+    #heroCanvas {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* CARD GLOW EFFECT */
+    .glow-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .glow-card::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255,0,0,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s;
+      opacity: 0;
+      top: var(--my, 50%);
+      left: var(--mx, 50%);
+    }
+    .glow-card:hover::after { opacity: 1; }
+
+    /* FEATURED PLAN SHIMMER */
+    .plan-card.featured {
+      background: linear-gradient(160deg, #1a0000 0%, var(--dark2) 100%);
+      border: 1px solid rgba(255, 0, 0, 0.4);
+      transform: scale(1.04);
+      position: relative;
+    }
+    .plan-card.featured::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      background: linear-gradient(105deg,
+        transparent 0%,
+        transparent 30%,
+        rgba(255,255,255,0.045) 50%,
+        transparent 70%,
+        transparent 100%);
+      background-size: 300% 100%;
+      animation: shimmer 3s infinite linear;
+      pointer-events: none;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 100% 0; }
+      100% { background-position: -100% 0; }
+    }
+
+    /* SOCIAL PROOF TOAST */
+    #socialToast {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 8000;
+      background: #1a1a1a;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-left: 3px solid var(--green);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      max-width: 300px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      transform: translateY(120%);
+      transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+      pointer-events: none;
+    }
+    #socialToast.show { transform: translateY(0); }
+    .toast-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+    .toast-text { font-size: 0.78rem; color: #ccc; line-height: 1.5; }
+    .toast-text strong { color: var(--white); font-weight: 600; }
+    .toast-time { font-size: 0.68rem; color: #555; margin-top: 2px; }
+
+    /* NAV SCROLL SHRINK */
+    nav.scrolled {
+      padding: 0.65rem 5%;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+    }
+    nav { transition: padding 0.3s ease, box-shadow 0.3s ease; }
+
+    /* HERO FLOATING BADGES */
+    .hero-float-badge {
+      position: absolute;
+      background: #1a1a1a;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 0.6rem 1rem;
+      font-size: 0.75rem;
+      color: #ccc;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 2;
+      white-space: nowrap;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      animation: floatBadge 4s ease-in-out infinite;
+    }
+    .hero-float-badge.badge-left {
+      left: 5%;
+      top: 55%;
+      animation-delay: 0s;
+    }
+    .hero-float-badge.badge-right {
+      right: 5%;
+      top: 60%;
+      animation-delay: 2s;
+    }
+    @media(max-width:900px) {
+      .hero-float-badge { display: none; }
+    }
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* SECTION DIVIDER */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,0,0,0.2), transparent);
+      margin: 0;
+    }
+
+    /* BUTTON RIPPLE */
+    .btn-primary, .btn-secondary, .btn-plan {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::before, .btn-secondary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.07);
+      transform: translateX(-100%) skewX(-15deg);
+      transition: transform 0.4s ease;
+    }
+    .btn-primary:hover::before, .btn-secondary:hover::before {
+      transform: translateX(100%) skewX(-15deg);
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible,
+    .reveal-left.visible,
+    .reveal-right.visible,
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* RESPONSIVE */
+    @media(max-width:1200px) {
+      .views-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+    }
+
+    @media(max-width:900px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .views-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+
+      .subs-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .plan-card.featured {
+        transform: scale(1);
+      }
+
+      .how-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testi-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    @media(max-width:600px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .views-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .testi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .guarantee-wrap {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .guarantee-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .plan-tabs {
+        flex-direction: column;
+        border-radius: 14px;
+        width: 90%;
+        max-width: 340px;
+      }
+
+      .plan-tab {
+        border-radius: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PAGE LOADER -->
+  <div id="pageLoader">
+    <div class="loader-rings">
+      <div class="loader-ring"></div>
+      <div class="loader-ring"></div>
+      <div class="loader-ring"></div>
+    </div>
+    <div class="loader-logo-text">Vid<span>Flow</span>.in</div>
+    <div class="loader-tagline">India's #1 YouTube Growth Partner</div>
+    <div class="loader-bar-wrap"><div class="loader-bar-fill"></div></div>
+  </div>
+
+  <!-- SOCIAL PROOF TOAST -->
+  <div id="socialToast">
+    <div class="toast-avatar" id="toastAvatar" style="background:rgba(255,0,0,0.15);color:#ff6b6b;">RS</div>
+    <div>
+      <div class="toast-text"><strong id="toastName">Rahul S.</strong> from <span id="toastCity">Delhi</span> just ordered <span id="toastPlan" style="color:var(--gold);">10K Views Plan</span></div>
+      <div class="toast-time" id="toastTime">2 minutes ago</div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Vid<span>Flow</span>.in</a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#plans">Pricing</a>
+      <a href="#how">How It Works</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact Us</a>
+      <a href="#plans" class="nav-cta">Choose a Plan</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" onclick="toggleMenu()">✕</button>
+    <a href="#services" onclick="toggleMenu()">Services</a>
+    <a href="#plans" onclick="toggleMenu()">Pricing</a>
+    <a href="#how" onclick="toggleMenu()">How It Works</a>
+    <a href="refund.html" onclick="toggleMenu()">Refund Policy</a>
+    <a href="#faq" onclick="toggleMenu()">FAQ</a>
+    <a href="#contact" onclick="toggleMenu()">Contact Us</a>
+    <a href="#plans" class="btn-primary" onclick="toggleMenu()">Choose a Plan</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-float-badge badge-left">
+      <span style="color:var(--red);font-size:1rem;">◆</span>
+      <div><strong style="color:var(--white);font-size:0.8rem;">50,000+</strong><br/><span style="color:#666;font-size:0.68rem;">Channels Grown</span></div>
+    </div>
+    <div class="hero-float-badge badge-right">
+      <span style="color:var(--red);font-size:1rem;">◆</span>
+      <div><strong style="color:var(--white);font-size:0.8rem;">98% Satisfaction</strong><br/><span style="color:#666;font-size:0.68rem;">Guaranteed Results</span></div>
+    </div>
+    <div class="hero-badge"><span class="badge-dot"></span>India's #1 YouTube Growth Partner</div>
+    <h1>Grow Your Channel<br /><span class="red">Faster.</span> <span class="outline">Bigger.</span></h1>
+    <p class="hero-sub"><strong>Real views. Real subscribers.</strong> Guaranteed results.<br />Trusted by 50,000+
+      creators across India.</p>
+    <div class="hero-buttons">
+      <a href="#plans" class="btn-primary">View All Plans</a>
+      <button onclick="openOrderForm('Free Trial', '₹0')" class="btn-secondary">Get Started For Free</button>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><span style="color:var(--red);">◆</span> YouTube Safe</div>
+      <div class="trust-sep"></div>
+      <div class="trust-item"><span style="color:var(--red);">◆</span> Secure Payment</div>
+      <div class="trust-sep"></div>
+      <div class="trust-item"><span style="color:var(--red);">◆</span> Fast Delivery</div>
+      <div class="trust-sep"></div>
+      <div class="trust-item"><span style="color:var(--red);">◆</span> Quick Support</div>
+    </div>
+  </section>
+
+  <!-- GOOGLE ADS BANNER -->
+  <div style="background: rgba(255,255,255,0.02); padding: 1.4rem 5%; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap;">
+    <!-- Google Ads Logo SVG -->
+    <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:0.6rem 1.1rem;">
+      <svg width="28" height="28" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+        <rect x="4"  y="24" width="14" height="36" rx="4" fill="#4285F4"/>
+        <rect x="25" y="4"  width="14" height="56" rx="4" fill="#FBBC04"/>
+        <rect x="46" y="14" width="14" height="46" rx="4" fill="#34A853"/>
+      </svg>
+      <span style="font-size:0.78rem;font-weight:700;color:#aaa;letter-spacing:1px;text-transform:uppercase;">Google Ads</span>
+      <span style="font-size:0.68rem;color:#555;border-left:1px solid rgba(255,255,255,0.1);padding-left:10px;">Verified Partner</span>
+    </div>
+    <div style="color:#aaa;font-size:0.88rem;line-height:1.6;max-width:520px;">
+      <strong style="color:var(--white);font-weight:600;">Traffic powered by Google Ads —</strong>
+      100% genuine, bot-free views and subscribers delivered through verified Google Ads campaigns.
+    </div>
+  </div>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-inner">
+      <span class="ticker-item"><span style="opacity:0.7;">◆</span> Views Boost</span><span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item"><span style="opacity:0.7;">◆</span> Subscribers</span><span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item"><span style="opacity:0.7;">◆</span> Fast Delivery</span><span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item"><span style="opacity:0.7;">◆</span> Targeted Audience</span><span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item"><span style="opacity:0.7;">◆</span> 100% Safe & Secure</span><span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item"><span style="opacity:0.7;">◆</span> Quick Support</span><span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item"><span style="opacity:0.7;">◆</span> Views Boost</span><span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item"><span style="opacity:0.7;">◆</span> Subscribers</span><span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item"><span style="opacity:0.7;">◆</span> Fast Delivery</span><span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item"><span style="opacity:0.7;">◆</span> Targeted Audience</span><span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item"><span style="opacity:0.7;">◆</span> 100% Safe & Secure</span><span class="ticker-item ticker-sep">·</span>
+      <span class="ticker-item"><span style="opacity:0.7;">◆</span> Quick Support</span><span class="ticker-item ticker-sep">·</span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat-card reveal glow-card">
+        <div class="stat-num red" data-target="50000">0</div>
+        <div class="stat-label">Channels Grown</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-1 glow-card">
+        <div class="stat-num gold" data-target="20000000">0</div>
+        <div class="stat-label">Views Delivered</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-2 glow-card">
+        <div class="stat-num green" data-target="98">0</div>
+        <div class="stat-label">% Satisfaction Rate</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-3 glow-card">
+        <div class="stat-num gold" data-target="5">0</div>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-header reveal">
+      <div class="section-tag">What We Offer</div>
+      <h2 class="section-title">Everything You Need<br />to Grow on YouTube</h2>
+      <p class="section-sub">Real views and subscribers delivered by genuine Indian users — fast, safe, and guaranteed.
+      </p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal glow-card">
+        <div class="service-icon-wrap"><span style="color:var(--red);">▶</span></div>
+        <div class="service-name">YouTube Views</div>
+        <div class="service-desc">Get real views from genuine targeted users — with full watch time. Algorithm-friendly
+          delivery, no spam, no bots.</div>
+        <div class="service-tag">✓ Algorithm Safe</div>
+      </div>
+      <div class="service-card reveal reveal-delay-1 glow-card">
+        <div class="service-icon-wrap"><span style="color:var(--red);">◈</span></div>
+        <div class="service-name">YouTube Subscribers</div>
+        <div class="service-desc">Active, genuine subscribers who actually engage with your future videos. Boost channel
+          credibility instantly.</div>
+        <div class="service-tag">✓ Real Accounts</div>
+      </div>
+      <div class="service-card reveal reveal-delay-2 glow-card">
+        <div class="service-icon-wrap"><span style="color:var(--red);">★</span></div>
+        <div class="service-name">Likes & Comments</div>
+        <div class="service-desc">More likes and genuine comments signal YouTube's algorithm that your content is
+          valuable and worth recommending.</div>
+        <div class="service-tag">✓ High Engagement</div>
+      </div>
+      <div class="service-card reveal reveal-delay-2 glow-card" style="grid-column:1/-1;max-width:400px;margin:0 auto;">
+        <div class="service-icon-wrap"><span style="color:var(--red);">◆</span></div>
+        <div class="service-name">Custom Packages</div>
+        <div class="service-desc">Need a custom combination of views and subscribers? Contact us directly for a tailored
+          package at the best price.</div>
+        <div class="service-tag">✓ Best Value</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section class="plans" id="plans">
+    <div class="section-header reveal">
+      <div class="section-tag">Pricing Plans</div>
+      <h2 class="section-title">Choose Your Plan</h2>
+      <p class="section-sub">Simple, transparent pricing — no hidden fees. Pick views or subscribers to get started.</p>
+    </div>
+
+    <div class="plan-tabs">
+      <button class="plan-tab active" onclick="switchTab('views',this)">▶ Views Plans</button>
+      <button class="plan-tab" onclick="switchTab('subs',this)">◈ Subscriber Plans</button>
+    </div>
+
+    <!-- VIEWS PLANS -->
+    <div class="plans-panel views-grid active" id="panel-views">
+
+      <div class="plan-card reveal">
+        <div class="plan-name">Starter</div>
+        <div class="plan-views-count">5K <span>Views</span></div>
+        <div class="plan-desc">Perfect for new creators looking to kickstart their channel growth</div>
+        <div class="plan-price"><span class="price-main">₹649</span></div>
+        <div class="plan-orig">Regular price: ₹799</div>
+        <div class="plan-delivery">◆ Delivery in 1-3 days</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-check">✓</span> 5,000 Real YouTube Views</li>
+          <li><span class="feat-check">✓</span> Targeted Audience</li>
+          <li><span class="feat-check">✓</span> High Retention Views</li>
+          <li><span class="feat-check">✓</span> Quick Support</li>
+          <li><span class="feat-check">✓</span> No Password Required</li>
+        </ul>
+        <div class="plan-btns">
+          <button class="btn-plan btn-plan-outline" onclick="openOrderForm('5K Views','₹649')">Get Started</button>
+          <button class="btn-plan btn-plan-pay" onclick="openPayment('5K Views','₹649')">Pay Now ₹649</button>
+        </div>
+      </div>
+
+      <div class="plan-card featured reveal reveal-delay-1">
+        <div class="plan-popular">★ Most Popular</div>
+        <div class="plan-name" style="color:var(--red);">Growth</div>
+        <div class="plan-views-count">10K <span>Views</span></div>
+        <div class="plan-desc">The most popular choice for growing creators who want real traction</div>
+        <div class="plan-price"><span class="price-main">₹1,349</span></div>
+        <div class="plan-orig">Regular price: ₹1,499</div>
+        <div class="plan-delivery">◆ Delivery in 4-5 days</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-check">✓</span> 10,000 Real YouTube Views</li>
+          <li><span class="feat-check">✓</span> Targeted Audience</li>
+          <li><span class="feat-check">✓</span> High Retention Views</li>
+          <li><span class="feat-check">✓</span> Quick Support</li>
+          <li><span class="feat-check">✓</span> No Password Required</li>
+        </ul>
+        <div class="plan-btns">
+          <button class="btn-plan btn-plan-red" onclick="openOrderForm('10K Views','₹1,349')">Get Started</button>
+          <button class="btn-plan btn-plan-pay" onclick="openPayment('10K Views','₹1,349')">Pay Now ₹1,349</button>
+        </div>
+      </div>
+
+      <div class="plan-card reveal reveal-delay-2">
+        <div class="plan-name" style="color:var(--gold);">Viral</div>
+        <div class="plan-views-count">20K <span>Views</span></div>
+        <div class="plan-desc">For serious creators who want to go viral and dominate their niche</div>
+        <div class="plan-price"><span class="price-main">₹2,599</span></div>
+        <div class="plan-orig">Regular price: ₹2,999</div>
+        <div class="plan-delivery">◆ Delivery in 4-5 days</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-check">✓</span> 20,000 Real YouTube Views</li>
+          <li><span class="feat-check">✓</span> Targeted Audience</li>
+          <li><span class="feat-check">✓</span> High Retention Views</li>
+          <li><span class="feat-check">✓</span> Quick Support</li>
+          <li><span class="feat-check">✓</span> No Password Required</li>
+        </ul>
+        <div class="plan-btns">
+          <button class="btn-plan btn-plan-outline" onclick="openOrderForm('20K Views','₹2,599')">Get Started</button>
+          <button class="btn-plan btn-plan-pay" onclick="openPayment('20K Views','₹2,599')">Pay Now ₹2,599</button>
+        </div>
+      </div>
+
+      <div class="plan-card reveal reveal-delay-1">
+        <div class="plan-name" style="color:#a78bfa;">Elite</div>
+        <div class="plan-views-count">50K <span>Views</span></div>
+        <div class="plan-desc">Dominate your niche and trigger YouTube's recommendation engine at scale</div>
+        <div class="plan-price"><span class="price-main">₹5,899</span></div>
+        <div class="plan-orig">Regular price: ₹5,999</div>
+        <div class="plan-delivery">◆ Delivery in 5-6 days</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-check">✓</span> 50,000 Real YouTube Views</li>
+          <li><span class="feat-check">✓</span> Targeted Audience</li>
+          <li><span class="feat-check">✓</span> High Retention Views</li>
+          <li><span class="feat-check">✓</span> Quick Support</li>
+          <li><span class="feat-check">✓</span> No Password Required</li>
+        </ul>
+        <div class="plan-btns">
+          <button class="btn-plan btn-plan-outline" onclick="openOrderForm('50K Views','₹5,899')">Get Started</button>
+          <button class="btn-plan btn-plan-pay" onclick="openPayment('50K Views','₹5,899')">Pay Now ₹5,899</button>
+        </div>
+      </div>
+
+      <div class="plan-card reveal reveal-delay-2">
+        <div class="plan-name" style="color:var(--gold);">Legend</div>
+        <div class="plan-views-count">100K <span>Views</span></div>
+        <div class="plan-desc">The ultimate views package — go from unknown to unmissable in days</div>
+        <div class="plan-price"><span class="price-main">₹8,999</span></div>
+        <div class="plan-orig">Regular price: ₹10,999</div>
+        <div class="plan-delivery">◆ Delivery in 7-8 days</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-check">✓</span> 1,00,000 Real YouTube Views</li>
+          <li><span class="feat-check">✓</span> Targeted Audience</li>
+          <li><span class="feat-check">✓</span> High Retention Views</li>
+          <li><span class="feat-check">✓</span> Quick Support</li>
+          <li><span class="feat-check">✓</span> No Password Required</li>
+        </ul>
+        <div class="plan-btns">
+          <button class="btn-plan btn-plan-outline" style="border-color:rgba(245,166,35,0.5);color:var(--gold);"
+            onclick="openOrderForm('100K Views','₹8,999')">Get Started</button>
+          <button class="btn-plan btn-plan-pay" onclick="openPayment('100K Views','₹8,999')">Pay Now ₹8,999</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SUBSCRIBER PLANS -->
+    <div class="plans-panel subs-grid" id="panel-subs">
+
+      <div class="plan-card reveal">
+        <div class="plan-name">Starter</div>
+        <div class="plan-views-count">500 <span>Subs</span></div>
+        <div class="plan-desc">A solid foundation to make your channel look credible and trustworthy</div>
+        <div class="plan-price"><span class="price-main">₹4499</span></div>
+        <div class="plan-orig">Regular price: ₹5599</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-check">✓</span> 500 Genuine Subscribers</li>
+          <li><span class="feat-check">✓</span> Real & Active Users</li>
+          <li><span class="feat-check">✓</span> Gradual Natural Delivery</li>
+          <li><span class="feat-check">✓</span> Quick Support</li>
+          <li><span class="feat-check">✓</span> No Password Required</li>
+        </ul>
+        <div class="plan-btns">
+          <button class="btn-plan btn-plan-outline" onclick="openOrderForm('500 Subscribers','₹4499')">Get
+            Started</button>
+          <button class="btn-plan btn-plan-pay" onclick="openPayment('500 Subscribers','₹4499')">Pay Now ₹4499</button>
+        </div>
+      </div>
+
+      <div class="plan-card featured reveal reveal-delay-1">
+        <div class="plan-popular">★ Best Value</div>
+        <div class="plan-name" style="color:var(--red);">Growth</div>
+        <div class="plan-views-count">1K <span>Subs</span></div>
+        <div class="plan-desc">Reach the 1,000 subscriber milestone and unlock monetization eligibility</div>
+        <div class="plan-price"><span class="price-main">₹7999</span></div>
+        <div class="plan-orig">Regular price: ₹8999</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-check">✓</span> 1,000 Genuine Subscribers</li>
+          <li><span class="feat-check">✓</span> Real & Active Users</li>
+          <li><span class="feat-check">✓</span> Gradual Natural Delivery</li>
+          <li><span class="feat-check">✓</span> Quick Support</li>
+          <li><span class="feat-check">✓</span> No Password Required</li>
+        </ul>
+        <div class="plan-btns">
+          <button class="btn-plan btn-plan-red" onclick="openOrderForm('1K Subscribers','₹7999')">Get Started</button>
+          <button class="btn-plan btn-plan-pay" onclick="openPayment('1K Subscribers','₹7999')">Pay Now ₹7999</button>
+        </div>
+      </div>
+
+      <div class="plan-card reveal reveal-delay-2">
+        <div class="plan-name" style="color:#a78bfa;">Advanced</div>
+        <div class="plan-views-count">2K <span>Subs</span></div>
+        <div class="plan-desc">Keep the momentum going and expand your reach to new audiences rapidly</div>
+        <div class="plan-price"><span class="price-main">₹14999</span></div>
+        <div class="plan-orig">Regular price: ₹16999</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-check">✓</span> 2,000 Genuine Subscribers</li>
+          <li><span class="feat-check">✓</span> Real & Active Users</li>
+          <li><span class="feat-check">✓</span> Gradual Natural Delivery</li>
+          <li><span class="feat-check">✓</span> Quick Support</li>
+          <li><span class="feat-check">✓</span> No Password Required</li>
+        </ul>
+        <div class="plan-btns">
+          <button class="btn-plan btn-plan-outline" onclick="openOrderForm('2K Subscribers','₹14999')">Get
+            Started</button>
+          <button class="btn-plan btn-plan-pay" onclick="openPayment('2K Subscribers','₹14999')">Pay Now ₹14999</button>
+        </div>
+      </div>
+
+      <div class="plan-card reveal reveal-delay-3">
+        <div class="plan-name" style="color:var(--gold);">Pro</div>
+        <div class="plan-views-count">5K <span>Subs</span></div>
+        <div class="plan-desc">Build a major subscriber base and establish yourself as a serious creator</div>
+        <div class="plan-price"><span class="price-main">₹28999</span></div>
+        <div class="plan-orig">Regular price: ₹29999</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-check">✓</span> 5,000 Genuine Subscribers</li>
+          <li><span class="feat-check">✓</span> Real & Active Users</li>
+          <li><span class="feat-check">✓</span> Gradual Natural Delivery</li>
+          <li><span class="feat-check">✓</span> Quick Support</li>
+          <li><span class="feat-check">✓</span> No Password Required</li>
+        </ul>
+        <div class="plan-btns">
+          <button class="btn-plan btn-plan-outline" onclick="openOrderForm('5K Subscribers','₹28999')">Get
+            Started</button>
+          <button class="btn-plan btn-plan-pay" onclick="openPayment('5K Subscribers','₹28999')">Pay Now ₹28999</button>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;font-size:0.8rem;color:#555;margin-top:2rem;">Need a custom order? <a href="#"
+        style="color:#ff6b6b;text-decoration:none;" onclick="contactWhatsApp()">Chat with us on WhatsApp →</a></p>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how" id="how">
+    <div class="section-header reveal">
+      <div class="section-tag">Process</div>
+      <h2 class="section-title">Start Growing in<br />3 Simple Steps</h2>
+      <p class="section-sub">No technical knowledge required. No password sharing. Just results.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-steps reveal-left">
+        <div class="how-step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h3>Choose Your Plan</h3>
+            <p>Select the plan that best fits your goal and budget — whether it's views, subscribers, or both. All plans
+              include real delivery and full support.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h3>Share Your Link & Pay</h3>
+            <p>Submit your YouTube video or channel link. Pay securely via UPI, Google Pay, Paytm, or Card. No password
+              sharing — ever.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h3>Watch Your Channel Grow</h3>
+            <p>Real views and subscribers begin arriving within 24 hours. Most orders complete in 1–5 business days.
+              Track your growth live!</p>
+          </div>
+        </div>
+      </div>
+      <div class="how-visual reveal-right reveal-delay-2">
+        <div
+          style="font-size:0.72rem;color:#666;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.5rem;">
+          Live Order Dashboard</div>
+        <div class="order-step">
+          <div class="order-icon"><span style="color:var(--red);">◆</span></div>
+          <div style="flex:1;">
+            <div class="order-title">Order Confirmed</div>
+            <div class="order-sub">Payment received — campaign starting</div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width:100%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="order-step">
+          <div class="order-icon"><span style="color:var(--red);">◆</span></div>
+          <div style="flex:1;">
+            <div class="order-title">Campaign Activated</div>
+            <div class="order-sub">Reaching targeted audiences</div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width:100%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="order-step">
+          <div class="order-icon"><span style="color:var(--red);">◆</span></div>
+          <div style="flex:1;">
+            <div class="order-title">Views Delivering</div>
+            <div class="order-sub">7,230 / 10,000 views delivered</div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width:72%;background:linear-gradient(90deg,var(--green),#16a34a);">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="order-step" style="opacity:0.4;">
+          <div class="order-icon"><span style="color:var(--red);">◆</span></div>
+          <div style="flex:1;">
+            <div class="order-title">Order Complete</div>
+            <div class="order-sub">All views delivered successfully</div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width:0%;background:var(--gold);"></div>
+            </div>
+          </div>
+        </div>
+        <div
+          style="margin-top:0.8rem;padding:0.9rem;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.15);border-radius:10px;font-size:0.75rem;color:#4ade80;">
+          <span style="color:var(--red);">◆</span> Your channel is 100% safe — we never ask for your password
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-header reveal">
+      <div class="section-tag">Reviews</div>
+      <h2 class="section-title">What Our Creators Say</h2>
+      <p class="section-sub">1,000+ satisfied creators across India trust VidFlow</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal glow-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"I was skeptical at first, but VidFlow blew me away. I got 10,000 real views in just 3
+          days and my channel engagement went up noticeably. Highly recommend!"</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:rgba(255,0,0,0.15);color:#ff6b6b;">RS</div>
+          <div>
+            <div class="testi-name">Rahul Sharma</div>
+            <div class="testi-channel">Tech Reviewer, Delhi • 28K Subscribers</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-1 glow-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"I needed 1,000 subscribers to unlock monetization. I ordered the Growth plan and hit
+          the milestone in just 4 days. Now my channel is earning! Best investment ever."</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:rgba(245,166,35,0.15);color:#f5a623;">PS</div>
+          <div>
+            <div class="testi-name">Priya Singh</div>
+            <div class="testi-channel">Cooking Channel, Lucknow • 12K Subscribers</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2 glow-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"My gaming channel had no views for months. I got the 20K Views plan and within 2 days
+          the video was trending in my niche. The organic traffic that followed was amazing."</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:rgba(34,197,94,0.15);color:#22c55e;">AV</div>
+          <div>
+            <div class="testi-name">Amit Verma</div>
+            <div class="testi-channel">Gaming Creator, Mumbai • 45K Subscribers</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal glow-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"I was worried about my channel being penalized, but nothing happened — because VidFlow
+          delivers real, genuine views. YouTube hasn't flagged anything. Totally safe!"</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:rgba(255,0,0,0.15);color:#ff6b6b;">NG</div>
+          <div>
+            <div class="testi-name">Neha Gupta</div>
+            <div class="testi-channel">Lifestyle Vlogger, Jaipur • 8K Subscribers</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-1 glow-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"I run a business channel and needed more reach. The Viral 20K plan helped us get
+          discovered by actual customers. The ROI was incredible. Will order again for every video."</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:rgba(245,166,35,0.15);color:#f5a623;">MK</div>
+          <div>
+            <div class="testi-name">Mohan Kumar</div>
+            <div class="testi-channel">Business Creator, Bangalore • 35K Subscribers</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2 glow-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"The support team is incredibly responsive. I paid via UPI and the campaign was live
+          within 2 hours. My dedicated manager kept me updated throughout. Professional service!"</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:rgba(34,197,94,0.15);color:#22c55e;">SK</div>
+          <div>
+            <div class="testi-name">Sunita Kumari</div>
+            <div class="testi-channel">Education Channel, Patna • 22K Subscribers</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="section-header reveal">
+      <div class="section-tag">FAQ</div>
+      <h2 class="section-title">Frequently Asked<br />Questions</h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">Are these real views? Will my channel be safe?<div
+            class="faq-icon">+</div></button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Absolutely. We only deliver views from real Indian users — no bots, no fake traffic.
+            Our delivery method is fully compatible with YouTube's Terms of Service. You never need to share your
+            password. In 4+ years, not a single client account has been penalized.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">How quickly will delivery start?<div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Your campaign activates within 2–4 hours of confirmed payment. Full delivery
+            completes in 1–5 business days depending on the plan. The Viral (20K Views) and Pro (5K Subs) plans receive
+            priority processing and typically start within 1 hour.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">What if my views or subscribers drop?<div class="faq-icon">+
+          </div></button>
+        <div class="faq-a">
+          <div class="faq-a-inner">We offer 30 to 60-day drop protection depending on your plan. If any views or
+            subscribers drop during the protection period, we refill them for free — no questions asked. Just contact
+            our support team.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">What payment methods do you accept?<div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">We accept UPI (Google Pay, PhonePe, Paytm), Debit Card, Credit Card, and Net Banking.
+            Our payment gateway is 100% SSL encrypted and secure. You'll receive a receipt instantly on WhatsApp and
+            email.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I order for multiple videos?<div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Yes! You can place orders for multiple videos or even run a channel-wide promotion.
+            We offer bulk discounts for larger orders. Contact us directly on WhatsApp for a custom package — guaranteed
+            10% extra discount.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">What is your refund policy?<div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">If we fail to deliver the promised views or subscribers — which is extremely rare —
+            you'll receive a full refund, no questions asked. Our 98% satisfaction rate speaks for itself, but your
+            peace of mind always comes first.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUARANTEE -->
+  <section class="guarantee">
+    <div class="guarantee-wrap reveal-scale">
+      <div class="guarantee-badge"><span style="color:var(--red);">◆</span></div>
+      <h2>The VidFlow Guarantee</h2>
+      <p>We've helped 50,000+ creators grow over 5 years. Our reputation is our business. Your satisfaction is our only
+        priority — and we back it up with a full money-back guarantee.</p>
+      <div class="guarantee-list">
+        <div class="g-item"><span class="g-icon">✓</span> Real Views — Zero Bots</div>
+        <div class="g-item"><span class="g-icon">✓</span> YouTube-Safe Delivery</div>
+        <div class="g-item"><span class="g-icon">✓</span> 100% Money-Back Guarantee</div>
+      </div>
+      <a href="#plans" class="btn-primary" style="font-size:1.05rem;padding:1.1rem 3rem;">Get Started — Risk Free</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Your Channel Won't<br /><span style="color:var(--red);">Grow Itself.</span></h2>
+    <p>Drop your YouTube link and mobile number below to start growing.</p>
+    <form class="cta-form" onsubmit="event.preventDefault(); window.location.href='thankyou.html';">
+      <input class="cta-input" type="url" placeholder="youtube.com/@yourchannel" required style="min-width: 200px; flex: 1;" />
+      <input class="cta-input" type="tel" placeholder="Mobile Number" required style="min-width: 150px; flex: 1;" />
+      <button type="submit" class="btn-primary" style="white-space:nowrap;">Start Your Campaign</button>
+    </form>
+    <p style="font-size:0.75rem;color:#555;margin-top:1rem;">No spam. One WhatsApp message — guaranteed.</p>
+  </section>
+
+  <!-- ORDER FORM POPUP -->
+  <div class="popup-overlay" id="orderPopup">
+    <div class="popup-box">
+      <button class="popup-close" onclick="closePopup('orderPopup')">✕</button>
+      <div class="popup-plan-badge">◆ <span id="popupPlanLabel">5K Views — ₹649</span></div>
+      <div class="popup-title">Complete Your Order</div>
+      <div class="popup-subtitle">Fill in your details and we'll get your campaign live within 24 hours.</div>
+      <div class="popup-row">
+        <div class="popup-field">
+          <label>Full Name</label>
+          <input type="text" id="orderName" placeholder="Rahul Sharma" />
+        </div>
+        <div class="popup-field">
+          <label>Phone Number</label>
+          <input type="tel" id="orderPhone" placeholder="+91 98765 43210" />
+        </div>
+      </div>
+      <div class="popup-field">
+        <label>Email Address</label>
+        <input type="email" id="orderEmail" placeholder="you@example.com" />
+      </div>
+      <div class="popup-field">
+        <label>YouTube Video / Channel Link</label>
+        <input type="url" id="orderLink" placeholder="https://youtube.com/@yourchannel" />
+      </div>
+      <div class="popup-field">
+        <label>Message (Optional)</label>
+        <textarea id="orderMsg" placeholder="Any specific instructions or requirements..."></textarea>
+      </div>
+      <button class="popup-submit" onclick="submitOrder()">Submit Order & Proceed to Payment →</button>
+      <p class="popup-note">◆ Your data is 100% secure. No password required. We'll contact you on WhatsApp within 1
+        hour.</p>
+    </div>
+  </div>
+
+  <!-- PAYMENT POPUP -->
+  <div class="popup-overlay" id="payPopup">
+    <div class="pay-popup-box">
+      <button class="popup-close" onclick="closePopup('payPopup')">✕</button>
+      <div style="font-size:0.75rem;color:#888;text-transform:uppercase;letter-spacing:1px;">Total Amount</div>
+      <div class="pay-amount" id="payAmount">₹649</div>
+      <div class="pay-plan-name" id="payPlanName">5K Views Plan</div>
+      <div style="font-size:0.82rem;color:#aaa;font-weight:600;margin-bottom:1rem;text-align:left;">Choose Payment
+        Method</div>
+      <div class="pay-methods">
+        <div class="pay-method sel" onclick="selectPayMethod(this,'upi')">UPI</div>
+        <div class="pay-method" onclick="selectPayMethod(this,'gpay')">Google Pay</div>
+        <div class="pay-method" onclick="selectPayMethod(this,'paytm')">Paytm</div>
+        <div class="pay-method" onclick="selectPayMethod(this,'card')">Card</div>
+      </div>
+      <div class="pay-upi-field show" id="upiField">
+        <input type="text" placeholder="Enter your UPI ID (e.g. name@upi)" />
+      </div>
+      <button class="popup-submit" onclick="confirmPayment()">Pay Now & Confirm Order</button>
+      <p class="popup-note">◆ SSL Encrypted · Razorpay Secured · Instant Confirmation</p>
+    </div>
+  </div>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact" id="contact">
+    <div class="section-header reveal">
+      <div class="section-tag">Get In Touch</div>
+      <h2 class="section-title">Contact Us</h2>
+      <p class="section-sub">Have questions? We're here to help. Reach out and we'll respond within 1 hour.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal-left">
+        <h3>Let's Talk About<br />Your Growth</h3>
+        <p>Whether you need help choosing the right plan, have questions about delivery, or want a custom package — our
+          team is available Quick to assist you.</p>
+        <div class="contact-item">
+          <div class="contact-icon"><span style="color:var(--red);">◆</span></div>
+          <div>
+            <div class="contact-item-title">WhatsApp Support</div>
+            <div class="contact-item-val">+91 98765 43210 · Available Quick</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><span style="color:var(--red);">◆</span></div>
+          <div>
+            <div class="contact-item-title">Email Us</div>
+            <div class="contact-item-val">support@viralkar.in</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><span style="color:var(--red);">◆</span></div>
+          <div>
+            <div class="contact-item-title">Location</div>
+            <div class="contact-item-val">Lucknow, Uttar Pradesh, India</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><span style="color:var(--red);">◆</span></div>
+          <div>
+            <div class="contact-item-title">Response Time</div>
+            <div class="contact-item-val">We reply within 1 hour — guaranteed</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal-right reveal-delay-1">
+        <div class="contact-row">
+          <div class="contact-field">
+            <label>Full Name</label>
+            <input type="text" id="cName" placeholder="Your name" />
+          </div>
+          <div class="contact-field">
+            <label>Phone Number</label>
+            <input type="tel" id="cPhone" placeholder="+91 XXXXX XXXXX" />
+          </div>
+        </div>
+        <div class="contact-field">
+          <label>Email Address</label>
+          <input type="email" id="cEmail" placeholder="you@example.com" />
+        </div>
+        <div class="contact-field">
+          <label>What Are You Looking For?</label>
+          <select id="cService">
+            <option value="">Select a service...</option>
+            <option>YouTube Views — 5K</option>
+            <option>YouTube Views — 10K</option>
+            <option>YouTube Views — 20K</option>
+            <option>YouTube Views — 50K</option>
+            <option>YouTube Views — 100K</option>
+            <option>Subscribers — 500</option>
+            <option>Subscribers — 1K</option>
+            <option>Subscribers — 5K</option>
+            <option>Custom Package</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="contact-field">
+          <label>YouTube Channel / Video Link</label>
+          <input type="url" id="cLink" placeholder="https://youtube.com/@yourchannel" />
+        </div>
+        <div class="contact-field">
+          <label>Message</label>
+          <textarea id="cMsg" placeholder="Tell us more about what you need..."></textarea>
+        </div>
+        <button class="popup-submit" style="margin-top:0;" onclick="submitContact()">Send Message →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo">Vid<span>Flow</span>.in</div>
+        <div class="footer-brand-desc">India's #1 YouTube growth partner. Trusted by 50,000+ creators. Real growth, real
+          results — guaranteed.</div>
+        <div class="footer-social">
+          <a class="social-btn" href="#" title="Instagram"><span style="color:#aaa;">IG</span></a>
+          <a class="social-btn" href="#" title="WhatsApp"><span style="color:#aaa;">WA</span></a>
+          <a class="social-btn" href="#" title="YouTube"><span style="color:var(--red);">YT</span></a>
+          <a class="social-btn" href="#" title="Telegram"><span style="color:#aaa;">TG</span></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#">YouTube Views</a>
+        <a href="#">Subscribers</a>
+        <a href="#">Likes & Comments</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#contact">About Us</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="https://wa.me/919876543210" target="_blank">WhatsApp Support</a>
+        <a href="refund.html">Refund Policy</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 VidFlow.in — All rights reserved | Lucknow, Uttar Pradesh, India</div>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="refund.html">Refunds</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── PAGE LOADER ── */
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('pageLoader').classList.add('hidden');
+        setTimeout(() => { document.getElementById('pageLoader').style.display = 'none'; }, 700);
+      }, 1800);
+    });
+
+    /* ── HERO PARTICLE CANVAS ── */
+    (function () {
+      const canvas = document.getElementById('heroCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let W, H, dots = [];
+      function resize() {
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+      const COUNT = 60;
+      for (let i = 0; i < COUNT; i++) {
+        dots.push({
+          x: Math.random() * 1,
+          y: Math.random() * 1,
+          vx: (Math.random() - 0.5) * 0.0004,
+          vy: (Math.random() - 0.5) * 0.0004,
+          r: Math.random() * 1.5 + 0.5,
+          a: Math.random() * 0.5 + 0.15
+        });
+      }
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        for (let i = 0; i < dots.length; i++) {
+          const d = dots[i];
+          d.x += d.vx; d.y += d.vy;
+          if (d.x < 0) d.x = 1; if (d.x > 1) d.x = 0;
+          if (d.y < 0) d.y = 1; if (d.y > 1) d.y = 0;
+          const px = d.x * W, py = d.y * H;
+          ctx.beginPath();
+          ctx.arc(px, py, d.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,255,255,${d.a})`;
+          ctx.fill();
+          for (let j = i + 1; j < dots.length; j++) {
+            const d2 = dots[j];
+            const dx = (d.x - d2.x) * W, dy = (d.y - d2.y) * H;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 100) {
+              ctx.beginPath();
+              ctx.moveTo(px, py);
+              ctx.lineTo(d2.x * W, d2.y * H);
+              ctx.strokeStyle = `rgba(255,0,0,${0.06 * (1 - dist / 100)})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    /* ── CARD GLOW (MOUSE TRACKING) ── */
+    document.querySelectorAll('.glow-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+
+    /* ── NAV SCROLL SHRINK ── */
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* ── SOCIAL PROOF TOAST ── */
+    const toastData = [
+      { init: 'RS', name: 'Rahul S.', city: 'Delhi', plan: '10K Views', color: 'rgba(255,0,0,0.15)', textColor: '#ff6b6b', time: '2 min ago' },
+      { init: 'PS', name: 'Priya S.', city: 'Lucknow', plan: '1K Subscribers', color: 'rgba(245,166,35,0.15)', textColor: '#f5a623', time: '5 min ago' },
+      { init: 'AV', name: 'Amit V.', city: 'Mumbai', plan: '20K Views', color: 'rgba(34,197,94,0.15)', textColor: '#22c55e', time: '8 min ago' },
+      { init: 'NG', name: 'Neha G.', city: 'Jaipur', plan: '5K Views', color: 'rgba(255,0,0,0.15)', textColor: '#ff6b6b', time: '12 min ago' },
+      { init: 'MK', name: 'Mohan K.', city: 'Bangalore', plan: '500 Subscribers', color: 'rgba(245,166,35,0.15)', textColor: '#f5a623', time: '18 min ago' },
+    ];
+    let toastIdx = 0;
+    const toast = document.getElementById('socialToast');
+    function showToast() {
+      const t = toastData[toastIdx % toastData.length];
+      toastIdx++;
+      document.getElementById('toastAvatar').textContent = t.init;
+      document.getElementById('toastAvatar').style.background = t.color;
+      document.getElementById('toastAvatar').style.color = t.textColor;
+      document.getElementById('toastName').textContent = t.name;
+      document.getElementById('toastCity').textContent = t.city;
+      document.getElementById('toastPlan').textContent = t.plan;
+      document.getElementById('toastTime').textContent = t.time;
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); }, 4000);
+    }
+    setTimeout(() => { showToast(); setInterval(showToast, 9000); }, 4000);
+
+    /* ── MOBILE MENU ── */
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+
+    /* ── PLAN TABS ── */
+    function switchTab(type, btn) {
+      document.querySelectorAll('.plan-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.plans-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + type).classList.add('active');
+    }
+
+    /* ── FAQ ── */
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const ans = item.querySelector('.faq-a');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => { el.classList.remove('open'); el.querySelector('.faq-a').style.maxHeight = '0'; });
+      if (!isOpen) { item.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
+    }
+
+    /* ── ORDER FORM POPUP ── */
+    function openOrderForm(plan, price) {
+      document.getElementById('popupPlanLabel').textContent = plan + ' — ' + price;
+      document.getElementById('orderPopup').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePopup(id) {
+      document.getElementById(id).classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('click', function (e) {
+      if (e.target.classList.contains('popup-overlay')) {
+        e.target.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    function submitOrder() {
+      const name = document.getElementById('orderName').value.trim();
+      const phone = document.getElementById('orderPhone').value.trim();
+      const email = document.getElementById('orderEmail').value.trim();
+      const link = document.getElementById('orderLink').value.trim();
+      if (!name || !phone || !email || !link) {
+        alert('Please fill in all required fields (Name, Phone, Email, YouTube Link).');
+        return;
+      }
+      closePopup('orderPopup');
+      setTimeout(() => { window.location.href = 'thankyou.html'; }, 200);
+    }
+
+    /* ── PAYMENT POPUP ── */
+    function openPayment(plan, price) {
+      document.getElementById('payAmount').textContent = price;
+      document.getElementById('payPlanName').textContent = plan + ' Plan';
+      document.getElementById('payPopup').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.querySelectorAll('.pay-method').forEach((m, i) => { m.classList.toggle('sel', i === 0); });
+      document.getElementById('upiField').classList.add('show');
+    }
+
+    function selectPayMethod(el, method) {
+      document.querySelectorAll('.pay-method').forEach(m => m.classList.remove('sel'));
+      el.classList.add('sel');
+      document.getElementById('upiField').classList.toggle('show', method === 'upi' || method === 'gpay' || method === 'paytm');
+    }
+
+    function confirmPayment() {
+      closePopup('payPopup');
+      setTimeout(() => { window.location.href = 'thankyou.html'; }, 200);
+    }
+
+    /* ── CONTACT FORM ── */
+    function submitContact() {
+      const name = document.getElementById('cName').value.trim();
+      const phone = document.getElementById('cPhone').value.trim();
+      const email = document.getElementById('cEmail').value.trim();
+      if (!name || !phone || !email) {
+        alert('Please fill in your Name, Phone, and Email.');
+        return;
+      }
+      window.location.href = 'thankyou.html';
+    }
+
+    /* ── CTA SECTION ── */
+    function ctaSubmit() {
+      const link = document.getElementById('ytLink').value;
+      if (link.trim()) { alert('Thanks! We received your channel link.\nOur team will contact you within 1 hour on WhatsApp.\n\n' + link); }
+      else { alert('Please enter your YouTube channel or video link.'); }
+    }
+
+    function contactWhatsApp() {
+      window.open('https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20know%20more%20about%20VidFlow%20plans', '_blank');
+    }
+
+    /* ── SCROLL REVEAL (all directions) ── */
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => obs.observe(el));
+
+    /* ── COUNTER ── */
+    function animateCounter(el, target) {
+      const step = target / (2000 / 16); let cur = 0;
+      const t = setInterval(() => {
+        cur += step;
+        if (cur >= target) { cur = target; clearInterval(t); }
+        if (target >= 10000000) el.textContent = Math.floor(cur / 10000000) + 'Cr+';
+        else if (target >= 1000) el.textContent = Math.floor(cur / 1000) + 'K+';
+        else el.textContent = Math.floor(cur) + (target === 98 ? '%' : '+');
+      }, 16);
+    }
+    const cObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target, parseInt(e.target.dataset.target)); cObs.unobserve(e.target); } });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-target]').forEach(el => cObs.observe(el));
+  </script>
+</body>
+
+</html>
