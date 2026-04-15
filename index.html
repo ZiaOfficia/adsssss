@@ -2661,9 +2661,9 @@
   <section class="cta-section">
     <h2>Your Channel Won't<br /><span style="color:var(--red);">Grow Itself.</span></h2>
     <p>Drop your YouTube link and mobile number below to start growing.</p>
-    <form class="cta-form" onsubmit="event.preventDefault(); window.location.href='thankyou.html';">
-      <input class="cta-input" type="url" placeholder="youtube.com/@yourchannel" required style="min-width: 200px; flex: 1;" />
-      <input class="cta-input" type="tel" placeholder="Mobile Number" required style="min-width: 150px; flex: 1;" />
+    <form class="cta-form" onsubmit="event.preventDefault(); submitCTA();">
+      <input class="cta-input" type="url" id="ctaYoutube" placeholder="youtube.com/@yourchannel" required style="min-width: 200px; flex: 1;" />
+      <input class="cta-input" type="tel" id="ctaPhone" placeholder="Mobile Number" required style="min-width: 150px; flex: 1;" />
       <button type="submit" class="btn-primary" style="white-space:nowrap;">Start Your Campaign</button>
     </form>
     <p style="font-size:0.75rem;color:#555;margin-top:1rem;">No spam. One WhatsApp message — guaranteed.</p>
@@ -2998,15 +2998,29 @@
       }
     });
 
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbz9WL6V_nYopKTzKNvyiQUAgH7ty-DOMR-mLHEvX-tHOw9MjB5JwhAXeLoqVBftL2D5/exec';
+
+    function sendToSheet(data) {
+      fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).catch(() => {}); // fire-and-forget; redirect happens regardless
+    }
+
     function submitOrder() {
       const name = document.getElementById('orderName').value.trim();
       const phone = document.getElementById('orderPhone').value.trim();
       const email = document.getElementById('orderEmail').value.trim();
       const link = document.getElementById('orderLink').value.trim();
+      const msg = document.getElementById('orderMsg').value.trim();
+      const plan = document.getElementById('popupPlanLabel').textContent.trim();
       if (!name || !phone || !email || !link) {
         alert('Please fill in all required fields (Name, Phone, Email, YouTube Link).');
         return;
       }
+      sendToSheet({ formType: 'Order', fullName: name, phone: phone, email: email, service: plan, youtube: link, message: msg });
       closePopup('orderPopup');
       setTimeout(() => { window.location.href = 'thankyou.html'; }, 200);
     }
@@ -3037,18 +3051,23 @@
       const name = document.getElementById('cName').value.trim();
       const phone = document.getElementById('cPhone').value.trim();
       const email = document.getElementById('cEmail').value.trim();
+      const service = document.getElementById('cService').value.trim();
+      const link = document.getElementById('cLink').value.trim();
+      const msg = document.getElementById('cMsg').value.trim();
       if (!name || !phone || !email) {
         alert('Please fill in your Name, Phone, and Email.');
         return;
       }
+      sendToSheet({ formType: 'Contact', fullName: name, phone: phone, email: email, service: service, youtube: link, message: msg });
       window.location.href = 'thankyou.html';
     }
 
     /* ── CTA SECTION ── */
-    function ctaSubmit() {
-      const link = document.getElementById('ytLink').value;
-      if (link.trim()) { alert('Thanks! We received your channel link.\nOur team will contact you within 1 hour on WhatsApp.\n\n' + link); }
-      else { alert('Please enter your YouTube channel or video link.'); }
+    function submitCTA() {
+      const link = document.getElementById('ctaYoutube').value.trim();
+      const phone = document.getElementById('ctaPhone').value.trim();
+      sendToSheet({ formType: 'CTA', fullName: '', phone: phone, email: '', service: '', youtube: link, message: '' });
+      window.location.href = 'thankyou.html';
     }
 
     function contactWhatsApp() {
