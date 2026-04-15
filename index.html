@@ -3094,6 +3094,65 @@
     }, { threshold: 0.5 });
     document.querySelectorAll('[data-target]').forEach(el => cObs.observe(el));
   </script>
+  <!-- LIVE VIEWER BADGE -->
+  <div id="liveViewers" style="
+    position:fixed; bottom:20px; right:20px; z-index:9999;
+    background:#111; border:1px solid #2a2a2a;
+    border-radius:999px; padding:8px 14px 8px 10px;
+    display:flex; align-items:center; gap:7px;
+    font-family:'Poppins',sans-serif; font-size:0.78rem; font-weight:600;
+    color:#e0e0e0; box-shadow:0 4px 20px rgba(0,0,0,0.5);
+    user-select:none; pointer-events:none;
+  ">
+    <span style="width:9px;height:9px;border-radius:50%;background:#22c55e;display:inline-block;
+      box-shadow:0 0 0 0 rgba(34,197,94,0.6);animation:lvPulse 1.6s infinite;flex-shrink:0;"></span>
+    <span id="lvCount">--</span>&nbsp;watching now
+  </div>
+  <style>
+    @keyframes lvPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+      70%  { box-shadow: 0 0 0 7px rgba(34,197,94,0); }
+      100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+    }
+  </style>
+  <script>
+    (function () {
+      // Seeded random — same day always produces same "day type"
+      function sr(s) {
+        s = ((s ^ 61) ^ (s >>> 16)) >>> 0;
+        s = (s + (s << 3)) >>> 0;
+        s = (s ^ (s >>> 4)) >>> 0;
+        s = Math.imul(s, 0x27d4eb2d) >>> 0;
+        s = (s ^ (s >>> 15)) >>> 0;
+        return s / 4294967296;
+      }
+      var d = new Date();
+      var seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+      var dayRoll = sr(seed);
+
+      // Day tiers: low / below-avg / average / high / viral
+      var base;
+      if      (dayRoll < 0.12) base = Math.floor(sr(seed+1) * 900)   + 100;   // 100–1k
+      else if (dayRoll < 0.30) base = Math.floor(sr(seed+1) * 3500)  + 1000;  // 1k–4.5k
+      else if (dayRoll < 0.62) base = Math.floor(sr(seed+1) * 8000)  + 4500;  // 4.5k–12.5k
+      else if (dayRoll < 0.84) base = Math.floor(sr(seed+1) * 15000) + 12500; // 12.5k–27.5k
+      else                      base = Math.floor(sr(seed+1) * 22500) + 27500; // 27.5k–50k
+
+      // Start near the daily base
+      var count = Math.round(base * (0.88 + sr(seed+2) * 0.24));
+      count = Math.max(100, Math.min(50000, count));
+
+      document.getElementById('lvCount').textContent = count.toLocaleString('en-IN');
+
+      setInterval(function () {
+        var drift = (base - count) * 0.015;                       // gentle pull toward daily base
+        var noise = (Math.random() - 0.48) * Math.max(5, count * 0.035); // slight upward bias
+        count = Math.round(count + drift + noise);
+        count = Math.max(100, Math.min(50000, count));
+        document.getElementById('lvCount').textContent = count.toLocaleString('en-IN');
+      }, Math.random() * 2000 + 2500);
+    })();
+  </script>
 </body>
 
 </html>
