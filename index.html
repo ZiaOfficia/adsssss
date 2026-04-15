@@ -2944,7 +2944,15 @@
     ];
     let toastIdx = 0;
     const toast = document.getElementById('socialToast');
+    const toastIntervals = [40000, 50000, 120000];
+
+    function isPopupOpen() {
+      return !!document.querySelector('.popup-overlay.open');
+    }
+
     function showToast() {
+      // Don't show toast or badge interference when a form popup is open on mobile
+      if (isPopupOpen()) return;
       const t = toastData[toastIdx % toastData.length];
       toastIdx++;
       document.getElementById('toastAvatar').textContent = t.init;
@@ -2957,7 +2965,12 @@
       toast.classList.add('show');
       setTimeout(() => { toast.classList.remove('show'); }, 4000);
     }
-    setTimeout(() => { showToast(); setInterval(showToast, 9000); }, 4000);
+
+    function scheduleToast() {
+      const delay = toastIntervals[Math.floor(Math.random() * toastIntervals.length)];
+      setTimeout(() => { showToast(); scheduleToast(); }, delay);
+    }
+    scheduleToast();
 
     /* ── MOBILE MENU ── */
     function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
@@ -2979,22 +2992,33 @@
       if (!isOpen) { item.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
     }
 
+    function setOverlayMode(active) {
+      if (window.innerWidth <= 768) {
+        const badge = document.getElementById('liveViewers');
+        if (badge) badge.style.display = active ? 'none' : '';
+        if (!active) toast.classList.remove('show');
+      }
+    }
+
     /* ── ORDER FORM POPUP ── */
     function openOrderForm(plan, price) {
       document.getElementById('popupPlanLabel').textContent = plan + ' — ' + price;
       document.getElementById('orderPopup').classList.add('open');
       document.body.style.overflow = 'hidden';
+      setOverlayMode(true);
     }
 
     function closePopup(id) {
       document.getElementById(id).classList.remove('open');
       document.body.style.overflow = '';
+      if (!isPopupOpen()) setOverlayMode(false);
     }
 
     document.addEventListener('click', function (e) {
       if (e.target.classList.contains('popup-overlay')) {
         e.target.classList.remove('open');
         document.body.style.overflow = '';
+        if (!isPopupOpen()) setOverlayMode(false);
       }
     });
 
@@ -3032,6 +3056,7 @@
       document.body.style.overflow = 'hidden';
       document.querySelectorAll('.pay-method').forEach((m, i) => { m.classList.toggle('sel', i === 0); });
       document.getElementById('upiField').classList.add('show');
+      setOverlayMode(true);
     }
 
     function selectPayMethod(el, method) {
