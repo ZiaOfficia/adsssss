@@ -3095,24 +3095,52 @@
     document.querySelectorAll('[data-target]').forEach(el => cObs.observe(el));
   </script>
   <!-- LIVE VIEWER BADGE -->
-  <div id="liveViewers" style="
-    position:fixed; bottom:20px; right:20px; z-index:9999;
-    background:#111; border:1px solid #2a2a2a;
-    border-radius:999px; padding:8px 14px 8px 10px;
-    display:flex; align-items:center; gap:7px;
-    font-family:'Poppins',sans-serif; font-size:0.78rem; font-weight:600;
-    color:#e0e0e0; box-shadow:0 4px 20px rgba(0,0,0,0.5);
-    user-select:none; pointer-events:none;
-  ">
-    <span style="width:9px;height:9px;border-radius:50%;background:#22c55e;display:inline-block;
-      box-shadow:0 0 0 0 rgba(34,197,94,0.6);animation:lvPulse 1.6s infinite;flex-shrink:0;"></span>
-    <span id="lvCount">--</span>&nbsp;watching now
+  <div id="liveViewers">
+    <span class="lv-dot"></span>
+    <span class="lv-text"><span id="lvCount">--</span>&nbsp;watching now</span>
   </div>
   <style>
+    #liveViewers {
+      position: fixed; bottom: 20px; right: 20px; z-index: 9999;
+      background: #111; border: 1px solid #2a2a2a;
+      border-radius: 999px; padding: 8px 14px 8px 10px;
+      display: flex; align-items: center; gap: 7px;
+      font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 600;
+      color: #e0e0e0; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      user-select: none; pointer-events: none;
+      transition: padding 0.3s ease, gap 0.3s ease;
+    }
+    .lv-dot {
+      width: 9px; height: 9px; border-radius: 50%; background: #22c55e;
+      display: inline-block; flex-shrink: 0;
+      animation: lvPulse 1.6s infinite;
+    }
+    .lv-text {
+      overflow: hidden;
+      max-width: 160px;
+      white-space: nowrap;
+      transition: max-width 0.35s ease, opacity 0.3s ease;
+      opacity: 1;
+    }
     @keyframes lvPulse {
       0%   { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
       70%  { box-shadow: 0 0 0 7px rgba(34,197,94,0); }
       100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+    }
+    @media (max-width: 768px) {
+      #liveViewers {
+        padding: 8px 10px; gap: 0;
+        pointer-events: auto; cursor: pointer;
+      }
+      #liveViewers .lv-text {
+        max-width: 0; opacity: 0;
+      }
+      #liveViewers.lv-expanded {
+        padding: 8px 14px 8px 10px; gap: 7px;
+      }
+      #liveViewers.lv-expanded .lv-text {
+        max-width: 160px; opacity: 1;
+      }
     }
   </style>
   <script>
@@ -3151,6 +3179,20 @@
         count = Math.max(100, Math.min(50000, count));
         document.getElementById('lvCount').textContent = count.toLocaleString('en-IN');
       }, Math.random() * 2000 + 2500);
+
+      // Mobile tap to expand
+      var lvBadge = document.getElementById('liveViewers');
+      var lvTimer = null;
+      lvBadge.addEventListener('click', function () {
+        if (window.innerWidth > 768) return;
+        clearTimeout(lvTimer);
+        if (lvBadge.classList.contains('lv-expanded')) {
+          lvBadge.classList.remove('lv-expanded');
+        } else {
+          lvBadge.classList.add('lv-expanded');
+          lvTimer = setTimeout(function () { lvBadge.classList.remove('lv-expanded'); }, 4000);
+        }
+      });
     })();
   </script>
 </body>
