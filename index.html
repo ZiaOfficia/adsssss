@@ -3021,8 +3021,7 @@
         return;
       }
       sendToSheet({ formType: 'Order', fullName: name, phone: phone, email: email, service: plan, youtube: link, message: msg });
-      closePopup('orderPopup');
-      setTimeout(() => { window.location.href = 'thankyou.html'; }, 200);
+      window.location.href = 'thankyou.html';
     }
 
     /* ── PAYMENT POPUP ── */
@@ -3042,8 +3041,7 @@
     }
 
     function confirmPayment() {
-      closePopup('payPopup');
-      setTimeout(() => { window.location.href = 'thankyou.html'; }, 200);
+      window.location.href = 'thankyou.html';
     }
 
     /* ── CONTACT FORM ── */
