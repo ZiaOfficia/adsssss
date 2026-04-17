@@ -1028,34 +1028,246 @@
       color: var(--white);
     }
 
-    .pay-upi-field {
-      display: none;
+    .pay-upi-display {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 1.2rem;
+      gap: 0.8rem;
     }
-
-    .pay-upi-field.show {
+    .pay-upi-id {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.3px;
+    }
+    .pay-copy-btn {
+      background: rgba(255,0,0,0.15);
+      border: 1px solid rgba(255,0,0,0.35);
+      color: #ff6b6b;
+      border-radius: 8px;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: 'Poppins', sans-serif;
+      transition: background 0.2s;
+    }
+    .pay-copy-btn:hover { background: rgba(255,0,0,0.28); }
+    .pay-scanner-img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 12px;
+      margin: 0 auto 1.2rem;
       display: block;
+      border: 1px solid rgba(255,255,255,0.1);
     }
-
-    .pay-upi-field input {
+    .pay-method-panel { display: none; }
+    .pay-method-panel.show { display: block; }
+    .pay-step2 {
+      display: none;
+      margin-top: 0.5rem;
+    }
+    .pay-step2.show { display: block; }
+    .pay-txn-input {
       width: 100%;
       padding: 0.85rem 1rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: 10px;
       color: var(--white);
       font-family: 'Poppins', sans-serif;
       font-size: 0.88rem;
       outline: none;
       transition: border-color 0.2s;
+      margin-bottom: 0.9rem;
+    }
+    .pay-txn-input:focus { border-color: rgba(255,0,0,0.5); }
+    .pay-txn-input::placeholder { color: #555; }
+    .pay-action-btns { display: flex; flex-direction: column; gap: 0.6rem; }
+    .pay-wa-btn {
+      width: 100%;
+      padding: 0.9rem;
+      background: #25D366;
+      color: var(--white);
+      border: none;
+      border-radius: 99px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .pay-wa-btn:hover { opacity: 0.88; }
+    .pay-confirm-btn {
+      width: 100%;
+      padding: 0.9rem;
+      background: rgba(255,255,255,0.07);
+      color: #aaa;
+      border: 1.5px solid rgba(255,255,255,0.15);
+      border-radius: 99px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .pay-confirm-btn.ready {
+      background: var(--red);
+      color: var(--white);
+      border-color: var(--red);
+      box-shadow: 0 0 20px rgba(255,0,0,0.3);
     }
 
-    .pay-upi-field input:focus {
-      border-color: rgba(255, 0, 0, 0.5);
+    /* ENQUIRE NOW PANEL */
+    .enq-tab {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1500;
+      background: var(--red);
+      color: var(--white);
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      padding: 1.2rem 0.6rem;
+      border-radius: 8px 0 0 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: -3px 0 16px rgba(255,0,0,0.3);
+      transition: background 0.2s;
+      user-select: none;
     }
-
-    .pay-upi-field input::placeholder {
-      color: #555;
+    .enq-tab:hover { background: var(--red-dark); }
+    .enq-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1600;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+    }
+    .enq-overlay.open { display: block; }
+    .enq-panel {
+      position: fixed;
+      right: -520px;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 480px;
+      z-index: 1700;
+      background: #161616;
+      border-left: 1px solid rgba(255,255,255,0.08);
+      overflow-y: auto;
+      transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+      padding: 2rem 1.8rem 3rem;
+    }
+    .enq-panel.open { right: 0; }
+    .enq-panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.8rem;
+    }
+    .enq-panel-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+    .enq-close {
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .enq-close:hover { color: var(--white); }
+    .enq-service-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.6rem;
+      background: var(--dark2);
+      border-radius: 10px;
+      padding: 4px;
+    }
+    .enq-stab {
+      flex: 1;
+      padding: 0.55rem 0.5rem;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: #888;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .enq-stab.active {
+      background: var(--red);
+      color: var(--white);
+    }
+    .enq-service-panel { display: none; }
+    .enq-service-panel.active { display: block; }
+    .enq-field { margin-bottom: 1.1rem; }
+    .enq-field label {
+      display: block;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.45rem;
+    }
+    .enq-field input,
+    .enq-field select,
+    .enq-field textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.86rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .enq-field input:focus,
+    .enq-field select:focus,
+    .enq-field textarea:focus { border-color: rgba(255,0,0,0.45); }
+    .enq-field select option { background: #1f1f1f; }
+    .enq-field textarea { resize: vertical; min-height: 80px; }
+    .enq-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+    .enq-submit {
+      width: 100%;
+      padding: 1rem;
+      background: #25D366;
+      color: var(--white);
+      border: none;
+      border-radius: 99px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-top: 0.8rem;
+      transition: opacity 0.2s;
+    }
+    .enq-submit:hover { opacity: 0.88; }
+    .enq-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 1.2rem 0; }
+    @media (max-width: 500px) {
+      .enq-panel { max-width: 100%; padding: 1.5rem 1.2rem 3rem; }
+      .enq-row { grid-template-columns: 1fr; }
     }
 
     /* CONTACT SECTION */
@@ -2033,7 +2245,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">Vid<span>Flow</span>.in</a>
+    <a href="index.html" class="nav-logo">Vid<span>Flow</span>.in</a>
     <div class="nav-links">
       <a href="#services">Services</a>
       <a href="#plans">Pricing</a>
@@ -2199,8 +2411,8 @@
     </div>
 
     <div class="plan-tabs">
-      <button class="plan-tab active" onclick="switchTab('views',this)">◆ Views Plans</button>
-      <button class="plan-tab" onclick="switchTab('subs',this)">◈ Subscriber Plans</button>
+      <button class="plan-tab active" onclick="switchTab('views',this)">► Views Plans</button>
+      <button class="plan-tab" onclick="switchTab('subs',this)">▲ Subscriber Plans</button>
     </div>
 
     <!-- VIEWS PLANS -->
@@ -2675,8 +2887,8 @@
     <div class="popup-box">
       <button class="popup-close" onclick="closePopup('orderPopup')">✕</button>
       <div class="popup-plan-badge">◆ <span id="popupPlanLabel">5K Views — ₹649</span></div>
-      <div class="popup-title">Complete Your Order</div>
-      <div class="popup-subtitle">Fill in your details and we'll get your campaign live within 24 hours.</div>
+      <div class="popup-title">Enquire Now</div>
+      <div class="popup-subtitle">Fill in your details and our team will contact you on WhatsApp within 1 hour.</div>
       <div class="popup-row">
         <div class="popup-field">
           <label>Full Name</label>
@@ -2699,7 +2911,7 @@
         <label>Message (Optional)</label>
         <textarea id="orderMsg" placeholder="Any specific instructions or requirements..."></textarea>
       </div>
-      <button class="popup-submit" onclick="submitOrder()">Submit Order & Proceed to Payment →</button>
+      <button class="popup-submit" onclick="submitOrder()">Submit Enquiry →</button>
       <p class="popup-note">◆ Your data is 100% secure. No password required. We'll contact you on WhatsApp within 1
         hour.</p>
     </div>
@@ -2712,19 +2924,42 @@
       <div style="font-size:0.75rem;color:#888;text-transform:uppercase;letter-spacing:1px;">Total Amount</div>
       <div class="pay-amount" id="payAmount">₹649</div>
       <div class="pay-plan-name" id="payPlanName">5K Views Plan</div>
-      <div style="font-size:0.82rem;color:#aaa;font-weight:600;margin-bottom:1rem;text-align:left;">Choose Payment
-        Method</div>
-      <div class="pay-methods">
-        <div class="pay-method sel" onclick="selectPayMethod(this,'upi')">UPI</div>
-        <div class="pay-method" onclick="selectPayMethod(this,'gpay')">Google Pay</div>
-        <div class="pay-method" onclick="selectPayMethod(this,'paytm')">Paytm</div>
-        <div class="pay-method" onclick="selectPayMethod(this,'card')">Card</div>
+
+      <!-- Step 1 -->
+      <div id="payStep1">
+        <div style="font-size:0.82rem;color:#aaa;font-weight:600;margin-bottom:1rem;text-align:left;">Choose Payment Method</div>
+        <div class="pay-methods">
+          <div class="pay-method sel" onclick="selectPayMethod(this,'upi')">◉ UPI</div>
+          <div class="pay-method" onclick="selectPayMethod(this,'scanner')">▣ Scanner</div>
+        </div>
+
+        <div class="pay-method-panel show" id="upiPanel">
+          <div style="font-size:0.78rem;color:#aaa;margin-bottom:0.5rem;text-align:left;">Send payment to this UPI ID:</div>
+          <div class="pay-upi-display">
+            <span class="pay-upi-id">8604411419@upi</span>
+            <button class="pay-copy-btn" onclick="copyUPI()">Copy UPI ID</button>
+          </div>
+        </div>
+
+        <div class="pay-method-panel" id="scannerPanel">
+          <div style="font-size:0.78rem;color:#aaa;margin-bottom:0.7rem;text-align:center;">Scan the QR code to pay:</div>
+          <img src="Scanner.jpeg" alt="Payment QR Code" class="pay-scanner-img" />
+        </div>
+
+        <button class="popup-submit" style="margin-top:0.5rem;" onclick="showPayStep2()">I've Completed Payment →</button>
+        <p class="popup-note">✓ Secure payment · No hidden charges</p>
       </div>
-      <div class="pay-upi-field show" id="upiField">
-        <input type="text" placeholder="Enter your UPI ID (e.g. name@upi)" />
+
+      <!-- Step 2 -->
+      <div class="pay-step2" id="payStep2">
+        <div style="font-size:0.9rem;font-weight:600;color:#ccc;margin-bottom:1rem;text-align:left;">Enter your Transaction ID to confirm:</div>
+        <input type="text" class="pay-txn-input" id="payTxnId" placeholder="e.g. UPI Ref / UTR number" oninput="onTxnInput()" />
+        <div class="pay-action-btns">
+          <button class="pay-wa-btn" onclick="shareOnWhatsApp()">↗ Share on WhatsApp</button>
+          <button class="pay-confirm-btn" id="payConfirmBtn" onclick="confirmPayment()">Already Shared — Confirm Order</button>
+        </div>
+        <p class="popup-note" style="margin-top:0.8rem;">✓ Share the payment screenshot on WhatsApp to complete your order</p>
       </div>
-      <button class="popup-submit" onclick="confirmPayment()">Pay Now & Confirm Order</button>
-      <p class="popup-note">◆ SSL Encrypted · Razorpay Secured · Instant Confirmation</p>
     </div>
   </div>
 
@@ -3043,8 +3278,10 @@
         alert('Please fill in all required fields (Name, Phone, Email, YouTube Link).');
         return;
       }
-      sendToSheet({ formType: 'Order', fullName: name, phone: phone, email: email, service: plan, youtube: link, message: msg });
-      window.location.href = 'thankyou.html';
+      sendToSheet({ formType: 'Enquiry', fullName: name, phone: phone, email: email, service: plan, youtube: link, message: msg });
+      closePopup('orderPopup');
+      const waText = encodeURIComponent('Hi VidFlow! I just submitted an enquiry.\n\nPlan: ' + plan + '\nName: ' + name + '\nPhone: ' + phone + '\nEmail: ' + email + '\nYouTube Link: ' + link + (msg ? '\nMessage: ' + msg : '') + '\n\nPlease get in touch with me.');
+      window.open('https://wa.me/919196111419?text=' + waText, '_blank');
     }
 
     /* ── PAYMENT POPUP ── */
@@ -3054,18 +3291,55 @@
       document.getElementById('payPopup').classList.add('open');
       document.body.style.overflow = 'hidden';
       document.querySelectorAll('.pay-method').forEach((m, i) => { m.classList.toggle('sel', i === 0); });
-      document.getElementById('upiField').classList.add('show');
+      document.getElementById('upiPanel').classList.add('show');
+      document.getElementById('scannerPanel').classList.remove('show');
+      document.getElementById('payStep1').style.display = 'block';
+      document.getElementById('payStep2').classList.remove('show');
+      document.getElementById('payTxnId').value = '';
+      document.getElementById('payConfirmBtn').classList.remove('ready');
       setOverlayMode(true);
     }
 
     function selectPayMethod(el, method) {
       document.querySelectorAll('.pay-method').forEach(m => m.classList.remove('sel'));
       el.classList.add('sel');
-      document.getElementById('upiField').classList.toggle('show', method === 'upi' || method === 'gpay' || method === 'paytm');
+      document.getElementById('upiPanel').classList.toggle('show', method === 'upi');
+      document.getElementById('scannerPanel').classList.toggle('show', method === 'scanner');
+    }
+
+    function copyUPI() {
+      navigator.clipboard.writeText('8604411419@upi').then(() => {
+        const btn = document.querySelector('.pay-copy-btn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy UPI ID'; }, 2000);
+      }).catch(() => {
+        prompt('Copy this UPI ID:', '8604411419@upi');
+      });
+    }
+
+    function showPayStep2() {
+      document.getElementById('payStep1').style.display = 'none';
+      document.getElementById('payStep2').classList.add('show');
+    }
+
+    function onTxnInput() {
+      const val = document.getElementById('payTxnId').value.trim();
+      document.getElementById('payConfirmBtn').classList.toggle('ready', val.length > 0);
+    }
+
+    function shareOnWhatsApp() {
+      const plan = document.getElementById('payPlanName').textContent;
+      const amount = document.getElementById('payAmount').textContent;
+      const txn = document.getElementById('payTxnId').value.trim();
+      const text = encodeURIComponent('Hi VidFlow! I have completed the payment.\n\nPlan: ' + plan + '\nAmount: ' + amount + (txn ? '\nTransaction ID: ' + txn : '') + '\n\nPlease find the payment screenshot attached.');
+      window.open('https://wa.me/919196111419?text=' + text, '_blank');
     }
 
     function confirmPayment() {
-      window.location.href = 'thankyou.html';
+      const txn = document.getElementById('payTxnId').value.trim();
+      if (!txn) { alert('Please enter your Transaction ID first.'); return; }
+      closePopup('payPopup');
+      setTimeout(() => { window.location.href = 'thankyou.html'; }, 200);
     }
 
     /* ── CONTACT FORM ── */
@@ -3218,6 +3492,153 @@
         }
       });
     })();
+  </script>
+
+  <!-- ENQUIRE NOW FLOATING TAB + PANEL -->
+  <div class="enq-tab" onclick="openEnqPanel()">Enquire Now</div>
+  <div class="enq-overlay" id="enqOverlay" onclick="closeEnqPanel()"></div>
+  <div class="enq-panel" id="enqPanel">
+    <div class="enq-panel-head">
+      <div class="enq-panel-title">Enquire <span style="color:var(--red);">Now</span></div>
+      <button class="enq-close" onclick="closeEnqPanel()">✕</button>
+    </div>
+    <div class="enq-service-tabs">
+      <button class="enq-stab active" onclick="switchEnqTab('views',this)">► Views</button>
+      <button class="enq-stab" onclick="switchEnqTab('subs',this)">▲ Subscribers</button>
+      <button class="enq-stab" onclick="switchEnqTab('likes',this)">◈ Likes</button>
+    </div>
+
+    <!-- Views -->
+    <div class="enq-service-panel active" id="enq-views">
+      <div class="enq-field">
+        <label>Views Package</label>
+        <select id="enqViewsPkg">
+          <option value="">Select package...</option>
+          <option>5K Views — ₹649</option>
+          <option>10K Views — ₹1,349</option>
+          <option>20K Views — ₹2,599</option>
+          <option>50K Views — ₹5,899</option>
+          <option>100K Views — ₹8,999</option>
+        </select>
+      </div>
+      <div class="enq-field">
+        <label>YouTube Video Link</label>
+        <input type="url" id="enqViewsLink" placeholder="https://youtube.com/watch?v=..." />
+      </div>
+    </div>
+
+    <!-- Subscribers -->
+    <div class="enq-service-panel" id="enq-subs">
+      <div class="enq-field">
+        <label>Subscribers Package</label>
+        <select id="enqSubsPkg">
+          <option value="">Select package...</option>
+          <option>500 Subscribers — ₹4,499</option>
+          <option>1K Subscribers — ₹7,999</option>
+          <option>2K Subscribers — ₹14,999</option>
+          <option>5K Subscribers — ₹28,999</option>
+        </select>
+      </div>
+      <div class="enq-field">
+        <label>YouTube Channel Link</label>
+        <input type="url" id="enqSubsLink" placeholder="https://youtube.com/@yourchannel" />
+      </div>
+    </div>
+
+    <!-- Likes -->
+    <div class="enq-service-panel" id="enq-likes">
+      <div class="enq-field">
+        <label>Likes Quantity</label>
+        <select id="enqLikesPkg">
+          <option value="">Select package...</option>
+          <option>500 Likes</option>
+          <option>1K Likes</option>
+          <option>2K Likes</option>
+          <option>5K Likes</option>
+          <option>10K Likes</option>
+        </select>
+      </div>
+      <div class="enq-field">
+        <label>YouTube Video Link</label>
+        <input type="url" id="enqLikesLink" placeholder="https://youtube.com/watch?v=..." />
+      </div>
+    </div>
+
+    <div class="enq-divider"></div>
+
+    <div class="enq-row">
+      <div class="enq-field">
+        <label>Full Name</label>
+        <input type="text" id="enqName" placeholder="Your name" />
+      </div>
+      <div class="enq-field">
+        <label>Phone (WhatsApp)</label>
+        <input type="tel" id="enqPhone" placeholder="+91 XXXXX XXXXX" />
+      </div>
+    </div>
+    <div class="enq-field">
+      <label>Email</label>
+      <input type="email" id="enqEmail" placeholder="you@example.com" />
+    </div>
+    <div class="enq-field">
+      <label>Budget (Optional)</label>
+      <input type="text" id="enqBudget" placeholder="e.g. ₹5,000" />
+    </div>
+    <div class="enq-field">
+      <label>Additional Requirements</label>
+      <textarea id="enqMsg" placeholder="Niche, language, timeline, or any other details..."></textarea>
+    </div>
+    <button class="enq-submit" onclick="submitEnquiry()">Submit Enquiry →</button>
+  </div>
+
+  <script>
+    var _enqActive = 'views';
+
+    function openEnqPanel() {
+      document.getElementById('enqOverlay').classList.add('open');
+      document.getElementById('enqPanel').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeEnqPanel() {
+      document.getElementById('enqOverlay').classList.remove('open');
+      document.getElementById('enqPanel').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function switchEnqTab(type, btn) {
+      document.querySelectorAll('.enq-stab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.enq-service-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('enq-' + type).classList.add('active');
+      _enqActive = type;
+    }
+
+    function submitEnquiry() {
+      const name = document.getElementById('enqName').value.trim();
+      const phone = document.getElementById('enqPhone').value.trim();
+      const email = document.getElementById('enqEmail').value.trim();
+      if (!name || !phone) { alert('Please enter your Name and Phone number.'); return; }
+
+      let service = '', link = '';
+      if (_enqActive === 'views') {
+        service = document.getElementById('enqViewsPkg').value || 'Views';
+        link = document.getElementById('enqViewsLink').value.trim();
+      } else if (_enqActive === 'subs') {
+        service = document.getElementById('enqSubsPkg').value || 'Subscribers';
+        link = document.getElementById('enqSubsLink').value.trim();
+      } else {
+        service = document.getElementById('enqLikesPkg').value || 'Likes';
+        link = document.getElementById('enqLikesLink').value.trim();
+      }
+
+      const budget = document.getElementById('enqBudget').value.trim();
+      const msg = document.getElementById('enqMsg').value.trim();
+
+      sendToSheet({ formType: 'EnquirePanel', fullName: name, phone: phone, email: email, service: service, youtube: link, message: (budget ? 'Budget: ' + budget + ' | ' : '') + msg });
+      closeEnqPanel();
+      window.location.href = 'thankyou.html';
+    }
   </script>
 </body>
 
