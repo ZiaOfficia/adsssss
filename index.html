@@ -3172,40 +3172,74 @@
     });
 
     /* ── SOCIAL PROOF TOAST ── */
-    const toastData = [
-      { init: 'RS', name: 'Rahul S.', city: 'Delhi', plan: '10K Views', color: 'rgba(255,0,0,0.15)', textColor: '#ff6b6b', time: '2 min ago' },
-      { init: 'PS', name: 'Priya S.', city: 'Lucknow', plan: '1K Subscribers', color: 'rgba(245,166,35,0.15)', textColor: '#f5a623', time: '5 min ago' },
-      { init: 'AV', name: 'Amit V.', city: 'Mumbai', plan: '20K Views', color: 'rgba(34,197,94,0.15)', textColor: '#22c55e', time: '8 min ago' },
-      { init: 'NG', name: 'Neha G.', city: 'Jaipur', plan: '5K Views', color: 'rgba(255,0,0,0.15)', textColor: '#ff6b6b', time: '12 min ago' },
-      { init: 'MK', name: 'Mohan K.', city: 'Bangalore', plan: '500 Subscribers', color: 'rgba(245,166,35,0.15)', textColor: '#f5a623', time: '18 min ago' },
-    ];
-    let toastIdx = 0;
-    const toast = document.getElementById('socialToast');
-    function isPopupOpen() {
-      return !!document.querySelector('.popup-overlay.open');
-    }
+    (function () {
+      var _names = [
+        ['RS','Rahul S.'],['PM','Priya M.'],['AK','Amit K.'],['NR','Neha R.'],
+        ['VT','Vikram T.'],['AP','Anjali P.'],['RG','Rohit G.'],['KN','Kavya N.'],
+        ['SB','Suresh B.'],['DV','Deepa V.'],['AC','Arjun C.'],['MS','Meera S.'],
+        ['KJ','Karan J.'],['PA','Pooja A.'],['ND','Nikhil D.'],['SL','Shruti L.'],
+        ['MY','Mohit Y.'],['RW','Riya W.'],['AY','Ajay Y.'],['SH','Sunita H.'],
+        ['AB','Abhishek B.'],['NQ','Nisha Q.'],['VP','Vinod P.'],['DX','Divya X.'],
+        ['RU','Raj U.'],['SO','Sneha O.'],['AI','Aakash I.'],['TR','Tanvi R.'],
+        ['MJ','Manish J.'],['PK','Preet K.'],['YS','Yash S.'],['BR','Bhavna R.'],
+        ['HS','Harish S.'],['IM','Ishaan M.'],['LT','Lavanya T.'],['ZA','Zara A.'],
+        ['CS','Chirag S.'],['FN','Farah N.'],['GV','Gaurav V.'],['JM','Jyoti M.']
+      ];
+      var _cities = [
+        'Delhi','Mumbai','Bangalore','Hyderabad','Chennai','Kolkata','Pune','Ahmedabad',
+        'Jaipur','Lucknow','Noida','Gurgaon','Chandigarh','Indore','Bhopal','Nagpur',
+        'Surat','Vadodara','Patna','Bhubaneswar','Kochi','Coimbatore','Visakhapatnam',
+        'Agra','Varanasi','Dehradun','Ranchi','Goa','Amritsar','Jodhpur'
+      ];
+      // weighted plans — cheaper ones appear ~2x more
+      var _plans = [
+        '5K Views — ₹649','5K Views — ₹649',
+        '10K Views — ₹1,349','10K Views — ₹1,349',
+        '20K Views — ₹2,599','20K Views — ₹2,599',
+        '50K Views — ₹5,899',
+        '100K Views — ₹8,999',
+        '500 Subscribers — ₹4,499','500 Subscribers — ₹4,499',
+        '1K Subscribers — ₹7,999','1K Subscribers — ₹7,999',
+        '2K Subscribers — ₹14,999',
+        '5K Subscribers — ₹28,999'
+      ];
+      var _colors = [
+        ['rgba(255,0,0,0.15)','#ff6b6b'],
+        ['rgba(245,166,35,0.15)','#f5a623'],
+        ['rgba(34,197,94,0.15)','#22c55e'],
+        ['rgba(99,179,237,0.15)','#63b3ed']
+      ];
 
-    function showToast() {
-      if (isPopupOpen()) return;
-      const t = toastData[toastIdx % toastData.length];
-      toastIdx++;
-      document.getElementById('toastAvatar').textContent = t.init;
-      document.getElementById('toastAvatar').style.background = t.color;
-      document.getElementById('toastAvatar').style.color = t.textColor;
-      document.getElementById('toastName').textContent = t.name;
-      document.getElementById('toastCity').textContent = t.city;
-      document.getElementById('toastPlan').textContent = t.plan;
-      document.getElementById('toastTime').textContent = t.time;
-      toast.classList.add('show');
-      setTimeout(() => { toast.classList.remove('show'); }, 4000);
-    }
+      // shuffle helper using seeded index so same session = consistent variety
+      var _si = 0;
+      function pick(arr) { _si = (_si * 1664525 + 1013904223) >>> 0; return arr[_si % arr.length]; }
 
-    function scheduleToast() {
-      // random between 10s and 90s
-      const delay = Math.floor(Math.random() * 80000) + 10000;
-      setTimeout(() => { showToast(); scheduleToast(); }, delay);
-    }
-    setTimeout(scheduleToast, 4000);
+      var toast = document.getElementById('socialToast');
+
+      window.isPopupOpen = function () { return !!document.querySelector('.popup-overlay.open'); };
+
+      function showToast() {
+        if (isPopupOpen()) return;
+        var n = pick(_names), city = pick(_cities), plan = pick(_plans), col = pick(_colors);
+        var minAgo = Math.floor(Math.random() * 28) + 1;
+        var timeStr = minAgo === 1 ? 'just now' : minAgo + ' min ago';
+        document.getElementById('toastAvatar').textContent = n[0];
+        document.getElementById('toastAvatar').style.background = col[0];
+        document.getElementById('toastAvatar').style.color = col[1];
+        document.getElementById('toastName').textContent = n[1];
+        document.getElementById('toastCity').textContent = city;
+        document.getElementById('toastPlan').textContent = plan;
+        document.getElementById('toastTime').textContent = timeStr;
+        toast.classList.add('show');
+        setTimeout(function () { toast.classList.remove('show'); }, 4500);
+      }
+
+      function scheduleToast() {
+        var delay = Math.floor(Math.random() * 55000) + 12000; // 12–67s
+        setTimeout(function () { showToast(); scheduleToast(); }, delay);
+      }
+      setTimeout(scheduleToast, 5000);
+    })();
 
     /* ── MOBILE MENU ── */
     function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
@@ -3444,7 +3478,6 @@
   </style>
   <script>
     (function () {
-      // Seeded random — same day always produces same "day type"
       function sr(s) {
         s = ((s ^ 61) ^ (s >>> 16)) >>> 0;
         s = (s + (s << 3)) >>> 0;
@@ -3453,31 +3486,54 @@
         s = (s ^ (s >>> 15)) >>> 0;
         return s / 4294967296;
       }
+
+      // Time-of-day multiplier — peaks 11am–9pm IST, very low midnight–5am
+      function hourMultiplier() {
+        var now = new Date();
+        // Convert to IST (UTC+5:30)
+        var istMs = now.getTime() + (now.getTimezoneOffset() * 60000) + (5.5 * 3600000);
+        var h = new Date(istMs).getHours() + new Date(istMs).getMinutes() / 60;
+        // Piecewise curve
+        if (h < 1)   return 0.04 + h * 0.02;
+        if (h < 5)   return 0.05 + (h - 1) * 0.01;
+        if (h < 7)   return 0.09 + (h - 5) * 0.08;
+        if (h < 9)   return 0.25 + (h - 7) * 0.15;
+        if (h < 11)  return 0.55 + (h - 9) * 0.15;
+        if (h < 14)  return 0.85 + (h - 11) * 0.05;
+        if (h < 17)  return 1.00;
+        if (h < 20)  return 1.00 - (h - 17) * 0.07;
+        if (h < 22)  return 0.79 - (h - 20) * 0.15;
+        return 0.49 - (h - 22) * 0.225;
+      }
+
       var d = new Date();
       var seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
       var dayRoll = sr(seed);
 
-      // Day tiers: low / below-avg / average / high / viral
-      var base;
-      if      (dayRoll < 0.12) base = Math.floor(sr(seed+1) * 900)   + 100;   // 100–1k
-      else if (dayRoll < 0.30) base = Math.floor(sr(seed+1) * 3500)  + 1000;  // 1k–4.5k
-      else if (dayRoll < 0.62) base = Math.floor(sr(seed+1) * 8000)  + 4500;  // 4.5k–12.5k
-      else if (dayRoll < 0.84) base = Math.floor(sr(seed+1) * 15000) + 12500; // 12.5k–27.5k
-      else                      base = Math.floor(sr(seed+1) * 22500) + 27500; // 27.5k–50k
+      // Daily peak capacity
+      var peak;
+      if      (dayRoll < 0.12) peak = Math.floor(sr(seed+1) * 800)   + 300;
+      else if (dayRoll < 0.30) peak = Math.floor(sr(seed+1) * 2500)  + 1200;
+      else if (dayRoll < 0.62) peak = Math.floor(sr(seed+1) * 5000)  + 3500;
+      else if (dayRoll < 0.84) peak = Math.floor(sr(seed+1) * 9000)  + 7000;
+      else                      peak = Math.floor(sr(seed+1) * 14000) + 11000;
 
-      // Start near the daily base
-      var count = Math.round(base * (0.88 + sr(seed+2) * 0.24));
-      count = Math.max(100, Math.min(50000, count));
+      function calcBase() { return Math.max(60, Math.round(peak * hourMultiplier())); }
+
+      var base = calcBase();
+      var count = Math.round(base * (0.92 + sr(seed+2) * 0.16));
+      count = Math.max(60, count);
 
       document.getElementById('lvCount').textContent = count.toLocaleString('en-IN');
 
       setInterval(function () {
-        var drift = (base - count) * 0.015;                       // gentle pull toward daily base
-        var noise = (Math.random() - 0.48) * Math.max(5, count * 0.035); // slight upward bias
+        base = calcBase(); // re-check time every tick so it drifts naturally
+        var drift = (base - count) * 0.018;
+        var noise = (Math.random() - 0.47) * Math.max(3, count * 0.03);
         count = Math.round(count + drift + noise);
-        count = Math.max(100, Math.min(50000, count));
+        count = Math.max(40, count);
         document.getElementById('lvCount').textContent = count.toLocaleString('en-IN');
-      }, Math.random() * 2000 + 2500);
+      }, Math.random() * 2000 + 2800);
 
       // Mobile tap to expand
       var lvBadge = document.getElementById('liveViewers');
