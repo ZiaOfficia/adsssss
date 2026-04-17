@@ -1252,7 +1252,7 @@
     .enq-submit {
       width: 100%;
       padding: 1rem;
-      background: #25D366;
+      background: var(--red);
       color: var(--white);
       border: none;
       border-radius: 99px;
@@ -1261,9 +1261,10 @@
       font-size: 0.95rem;
       cursor: pointer;
       margin-top: 0.8rem;
-      transition: opacity 0.2s;
+      box-shadow: 0 0 20px rgba(255,0,0,0.3);
+      transition: box-shadow 0.2s, opacity 0.2s;
     }
-    .enq-submit:hover { opacity: 0.88; }
+    .enq-submit:hover { opacity: 0.88; box-shadow: 0 0 32px rgba(255,0,0,0.5); }
     .enq-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 1.2rem 0; }
     @media (max-width: 500px) {
       .enq-panel { max-width: 100%; padding: 1.5rem 1.2rem 3rem; }
