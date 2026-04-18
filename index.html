@@ -638,7 +638,7 @@
     }
 
     .subs-grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 1.5rem;
       align-items: start;
     }
@@ -2532,11 +2532,31 @@
     <div class="plans-panel subs-grid" id="panel-subs">
 
       <div class="plan-card reveal">
+        <div class="plan-name">Mini</div>
+        <div class="plan-views-count">100 <span>Subs</span></div>
+        <div class="plan-desc">Perfect for brand new channels that want immediate credibility</div>
+        <div class="plan-price"><span class="price-main">₹499</span></div>
+        <div class="plan-orig">Regular price: ₹699</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-check">✓</span> 100 Genuine Subscribers</li>
+          <li><span class="feat-check">✓</span> Real & Active Users</li>
+          <li><span class="feat-check">✓</span> Gradual Natural Delivery</li>
+          <li><span class="feat-check">✓</span> Quick Support</li>
+          <li><span class="feat-check">✓</span> No Password Required</li>
+        </ul>
+        <div class="plan-btns">
+          <button class="btn-plan btn-plan-outline" onclick="openOrderForm('100 Subscribers','₹499')">Get Started</button>
+          <button class="btn-plan btn-plan-pay" onclick="openPayment('100 Subscribers','₹499')">Pay Now ₹499</button>
+        </div>
+      </div>
+
+      <div class="plan-card reveal">
         <div class="plan-name">Starter</div>
         <div class="plan-views-count">500 <span>Subs</span></div>
         <div class="plan-desc">A solid foundation to make your channel look credible and trustworthy</div>
-        <div class="plan-price"><span class="price-main">₹4499</span></div>
-        <div class="plan-orig">Regular price: ₹5599</div>
+        <div class="plan-price"><span class="price-main">₹1999</span></div>
+        <div class="plan-orig">Regular price: ₹2499</div>
         <div class="plan-divider"></div>
         <ul class="plan-features">
           <li><span class="feat-check">✓</span> 500 Genuine Subscribers</li>
@@ -2546,9 +2566,8 @@
           <li><span class="feat-check">✓</span> No Password Required</li>
         </ul>
         <div class="plan-btns">
-          <button class="btn-plan btn-plan-outline" onclick="openOrderForm('500 Subscribers','₹4499')">Get
-            Started</button>
-          <button class="btn-plan btn-plan-pay" onclick="openPayment('500 Subscribers','₹4499')">Pay Now ₹4499</button>
+          <button class="btn-plan btn-plan-outline" onclick="openOrderForm('500 Subscribers','₹1999')">Get Started</button>
+          <button class="btn-plan btn-plan-pay" onclick="openPayment('500 Subscribers','₹1999')">Pay Now ₹1999</button>
         </div>
       </div>
 
